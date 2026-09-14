@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Árbol de problemas — 3D</title>
+<style>
+  html, body { margin:0; padding:0; overflow:hidden; background:#0e0e0c; height:100%; font-family: -apple-system, sans-serif; }
+  #canvas-wrap { width:100vw; height:100vh; position:relative; }
+  #hint {
+    position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
+    color:#cfcac0; font-size:12px; opacity:0.65; letter-spacing:.02em;
+    pointer-events:none; text-align:center;
+  }
+  #title-bar {
+    position:absolute; top:0; left:0; right:0; padding:14px 16px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    pointer-events:none;
+    background:linear-gradient(to bottom, rgba(10,9,7,0.82), rgba(10,9,7,0));
+    animation: titleIn .8s ease-out;
+  }
+  #title-bar .titles { text-align:left; }
+  #title-bar .main {
+    font-size:16px; font-weight:500; color:#f4efe2; letter-spacing:.005em;
+    text-shadow:0 2px 8px rgba(0,0,0,0.5);
+  }
+  #title-bar .sub {
+    margin-top:2px; font-size:11px; color:#bdb6a3;
+  }
+  @keyframes titleIn {
+    from { opacity:0; transform:translateY(-10px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  #legend {
+    display:flex; gap:6px; font-size:11px; color:#e7e3da; flex-wrap:wrap; pointer-events:auto;
+  }
+  .chip { display:flex; align-items:center; gap:6px; background:rgba(20,20,18,0.6); padding:6px 12px; border-radius:999px; backdrop-filter: blur(4px); border:1px solid rgba(255,255,255,0.08); cursor:pointer; transition:background .15s; user-select:none; }
+  .chip.active { background:rgba(255,255,255,0.18); }
+  .dot { width:9px; height:9px; border-radius:50%; }
+  #info {
+    position:absolute; left:14px; right:14px; bottom:44px;
+    background:rgba(18,18,16,0.82); backdrop-filter: blur(6px);
+    border:1px solid rgba(255,255,255,0.1); border-radius:14px;
+    padding:14px 16px; color:#f2efe6; font-size:14px; line-height:1.4;
+    max-width:420px; opacity:0; transform:translateY(8px);
+    transition:opacity .2s, transform .2s; pointer-events:none;
+  }
+  #info.show { opacity:1; transform:translateY(0); pointer-events:auto; }
+  #info .tag { display:inline-block; font-size:10px; letter-spacing:.04em; padding:2px 8px; border-radius:999px; margin-bottom:6px; }
+  #info .close { position:absolute; top:8px; right:10px; color:#a9a69d; cursor:pointer; font-size:16px; }
+</style>
+</head>
+<body>
+<div id="canvas-wrap">
+  <div id="title-bar">
+    <div class="titles">
+      <div class="main">Adicción a las redes sociales</div>
+      <div class="sub">en los estudiantes de la Universidad Continental</div>
+    </div>
+    <div id="legend">
+      <div class="chip active" data-mode="all"><span class="dot" style="background:#e7e3da"></span>Todo</div>
+      <div class="chip" data-mode="causas"><span class="dot" style="background:#c98a4b"></span>Causas</div>
+      <div class="chip" data-mode="efectos"><span class="dot" style="background:#7dbf6b"></span>Efectos</div>
+    </div>
+  </div>
+  <div id="info"><span class="close">✕</span><div class="tag"></div><div class="body"></div></div>
+  <div id="hint">Toca una etiqueta para verla de cerca · arrastra para girar · rueda para zoom</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+const wrap = document.getElementById('canvas-wrap');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, wrap.clientWidth/wrap.clientHeight, 0.1, 100);
+camera.position.set(6.2, 3.4, 7.4);
+
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+wrap.appendChild(renderer.domElement);
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 1.0;
+controls.minDistance = 3;
+controls.maxDistance = 16;
+controls.target.set(0, 1, -0.5);
+controls.maxPolarAngle = Math.PI * 0.53;
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+const key = new THREE.DirectionalLight(0xfff2df, 0.9);
+key.position.set(5, 8, 6);
+scene.add(key);
+const fill = new THREE.DirectionalLight(0xbcd8ff, 0.35);
+fill.position.set(-6, 3, -4);
+scene.add(fill);
+scene.fog = new THREE.Fog(0xa9d4e8, 13, 29);
+
+const root = new THREE.Group();
+scene.add(root);
+const causasGroup = new THREE.Group();
+const efectosGroup = new THREE.Group();
+root.add(causasGroup, efectosGroup);
+
+// ---- animated sky + open field background ----
+function makeSkyTexture(){
+  const c = document.createElement('canvas'); c.width = 512; c.height = 512;
+  const ctx = c.getContext('2d');
+  const g = ctx.createLinearGradient(0,0,0,512);
+  g.addColorStop(0, '#3d7dc9');
+  g.addColorStop(0.55, '#a9d4e8');
+  g.addColorStop(1, '#e8f3da');
+  ctx.fillStyle = g; ctx.fillRect(0,0,512,512);
+  ctx.fillStyle = 'rgba(255,244,214,0.9)';
+  ctx.beginPath(); ctx.arc(400,120,42,0,Math.PI*2); ctx.fill();
+  return new THREE.CanvasTexture(c);
+}
+const sky = new THREE.Mesh(
+  new THREE.SphereGeometry(30, 24, 16),
+  new THREE.MeshBasicMaterial({ map: makeSkyTexture(), side: THREE.BackSide, fog:false })
+);
+root.add(sky);
+
+// soft rolling hills in the distance, behind the tree
+const hillMat1 = new THREE.MeshStandardMaterial({ color:0x6fa855, roughness:1 });
+const hillMat2 = new THREE.MeshStandardMaterial({ color:0x5c9647, roughness:1 });
+[[-3.5,-1.55,-9,7,0x0], [3.8,-1.7,-10,8,0x1], [0.2,-1.85,-12,10,0x0]].forEach(([x,y,z,r,which])=>{
+  const hill = new THREE.Mesh(new THREE.SphereGeometry(r,20,12,0,Math.PI*2,0,Math.PI*0.5), which?hillMat2:hillMat1);
+  hill.position.set(x,y,z);
+  root.add(hill);
+});
+
+// drifting clouds
+const cloudTex = (()=>{
+  const c=document.createElement('canvas'); c.width=256; c.height=128;
+  const ctx=c.getContext('2d');
+  ctx.fillStyle='rgba(255,255,255,0.92)';
+  [[70,64,38],[110,50,30],[150,64,36],[100,78,30],[140,80,26]].forEach(([x,y,r])=>{
+    ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+  });
+  return new THREE.CanvasTexture(c);
+})();
+const clouds = [];
+[[-8,5.5,-14],[-2,6.5,-15],[6,5.8,-13]].forEach((p,i)=>{
+  const mat = new THREE.SpriteMaterial({ map: cloudTex, transparent:true, opacity:0.85, depthWrite:false });
+  const sprite = new THREE.Sprite(mat);
+  sprite.scale.set(6.5,3.2,1);
+  sprite.position.set(p[0],p[1],p[2]);
+  sprite.userData.speed = 0.15 + i*0.05;
+  sprite.userData.startX = p[0];
+  root.add(sprite);
+  clouds.push(sprite);
+});
+
+const grassMat = new THREE.MeshStandardMaterial({ color:0x3f7a34, roughness:1 });
+const floor = new THREE.Mesh(new THREE.CircleGeometry(9, 40), grassMat);
+floor.rotation.x = -Math.PI/2;
+floor.position.set(0, -1, -0.1);
+root.add(floor);
+const grassTopY = -1;
+const grassBlades = [];
+for (let i=0;i<220;i++){
+  const h = 0.14 + Math.random()*0.14;
+  const blade = new THREE.Mesh(new THREE.ConeGeometry(0.03, h, 4),
+    new THREE.MeshStandardMaterial({ color: Math.random()>0.5?0x4c9a3f:0x2f6b2a, roughness:1 }));
+  const x = (Math.random()-0.5)*7.2, z = (Math.random()-0.2)*6.4;
+  blade.position.set(x, grassTopY + h/2, z);
+  blade.rotation.y = Math.random()*Math.PI;
+  blade.userData.phase = Math.random()*Math.PI*2;
+  blade.userData.baseRotZ = (Math.random()-0.5)*0.1;
+  blade.rotation.z = blade.userData.baseRotZ;
+  root.add(blade);
+  grassBlades.push(blade);
+}
+
+// soft contact shadow so the tree feels grounded instead of floating on the grass
+function makeBlobShadowTexture(){
+  const c = document.createElement('canvas'); c.width = 256; c.height = 256;
+  const ctx = c.getContext('2d');
+  const g = ctx.createRadialGradient(128,128,10,128,128,128);
+  g.addColorStop(0, 'rgba(0,0,0,0.4)');
+  g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g; ctx.fillRect(0,0,256,256);
+  return new THREE.CanvasTexture(c);
+}
+const shadowBlob = new THREE.Mesh(new THREE.CircleGeometry(2.5, 32),
+  new THREE.MeshBasicMaterial({ map: makeBlobShadowTexture(), transparent:true, depthWrite:false }));
+shadowBlob.rotation.x = -Math.PI/2;
+shadowBlob.position.set(0.1, -0.995, -1.0);
+root.add(shadowBlob);
+
+// little mushrooms tucked at the foot of the trunk
+function makeMushroom(scale, capColor){
+  const g = new THREE.Group();
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.015*scale,0.02*scale,0.07*scale,6),
+    new THREE.MeshStandardMaterial({ color:0xe9dfc4, roughness:0.9 }));
+  stem.position.y = 0.035*scale;
+  g.add(stem);
+  const cap = new THREE.Mesh(new THREE.SphereGeometry(0.05*scale,10,8,0,Math.PI*2,0,Math.PI*0.55),
+    new THREE.MeshStandardMaterial({ color:capColor, roughness:0.75 }));
+  cap.position.y = 0.07*scale;
+  g.add(cap);
+  return g;
+}
+[[0.5,0.22,0xb5432f],[-0.42,0.35,0xb5432f],[0.58,0.5,0xe9dfc4]].forEach(([x,z,c])=>{
+  const m = makeMushroom(1 + Math.random()*0.6, c);
+  m.position.set(x, -0.97, -1.1+z);
+  root.add(m);
+});
+// small pebbles scattered near the base
+const pebbleMat = new THREE.MeshStandardMaterial({ color:0x8a8477, roughness:1 });
+for (let i=0;i<7;i++){
+  const a = Math.random()*Math.PI*2, r = 0.9+Math.random()*1.8;
+  const pebble = new THREE.Mesh(new THREE.SphereGeometry(0.035+Math.random()*0.04, 6, 5), pebbleMat);
+  pebble.position.set(Math.cos(a)*r, -0.97, -1.1+Math.sin(a)*r*0.8);
+  pebble.scale.set(1, 0.6+Math.random()*0.3, 1);
+  pebble.rotation.y = Math.random()*Math.PI;
+  root.add(pebble);
+}
+// a few fallen leaves scattered in the grass, autumn-toned
+const fallenLeafGeo = (()=>{
+  const s = new THREE.Shape();
+  s.moveTo(0,0);
+  s.quadraticCurveTo(0.06,0.06,0,0.17);
+  s.quadraticCurveTo(-0.06,0.06,0,0);
+  return new THREE.ShapeGeometry(s);
+})();
+const fallenLeafColors = [0xc98a4b, 0xd1a13f, 0x8a6a2f, 0xa8451f];
+for (let i=0;i<13;i++){
+  const leaf = new THREE.Mesh(fallenLeafGeo, new THREE.MeshStandardMaterial({
+    color: fallenLeafColors[i%fallenLeafColors.length], roughness:0.9, side:THREE.DoubleSide
+  }));
+  const a = Math.random()*Math.PI*2, r = 1.3+Math.random()*3.6;
+  leaf.position.set(Math.cos(a)*r, -0.985, -1.1+Math.sin(a)*r*0.85);
+  leaf.rotation.x = -Math.PI/2;
+  leaf.rotation.z = Math.random()*Math.PI*2;
+  const s = 0.8+Math.random()*0.6;
+  leaf.scale.set(s,s,s);
+  root.add(leaf);
+}
+
+
+// ---- trunk (bark texture + irregular, slightly leaning silhouette) ----
+function makeBarkTexture(){
+  const c = document.createElement('canvas'); c.width = 256; c.height = 512;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#a9814f'; ctx.fillRect(0,0,256,512);
+  for (let i=0;i<260;i++){
+    const shade = 25 + Math.random()*35;
+    ctx.strokeStyle = `rgba(${shade+110},${shade+85},${shade+45},${0.18+Math.random()*0.25})`;
+    ctx.lineWidth = 1 + Math.random()*2.2;
+    let x = Math.random()*256;
+    ctx.beginPath(); ctx.moveTo(x,0);
+    for (let y=10;y<=512;y+=16){ x += (Math.random()-0.5)*9; ctx.lineTo(x,y); }
+    ctx.stroke();
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.wrapS = THREE.RepeatWrapping; tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(3,1);
+  return tex;
+}
+// grayscale relief map so the bark grooves actually catch light instead of being flat-shaded
+function makeBarkBumpTexture(){
+  const c = document.createElement('canvas'); c.width = 256; c.height = 512;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#7d7d7d'; ctx.fillRect(0,0,256,512);
+  for (let i=0;i<200;i++){
+    const shade = 60 + Math.random()*130;
+    ctx.strokeStyle = `rgba(${shade},${shade},${shade},${0.45+Math.random()*0.4})`;
+    ctx.lineWidth = 1.2 + Math.random()*2.6;
+    let x = Math.random()*256;
+    ctx.beginPath(); ctx.moveTo(x,0);
+    for (let y=8;y<=512;y+=14){ x += (Math.random()-0.5)*8; ctx.lineTo(x,y); }
+    ctx.stroke();
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.wrapS = THREE.RepeatWrapping; tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(3,1);
+  return tex;
+}
+function buildTrunkGeometry(){
+  const geo = new THREE.CylinderGeometry(0.32, 0.62, 3.4, 20, 24, true);
+  const pos = geo.attributes.position;
+  for (let i=0;i<pos.count;i++){
+    const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+    const angle = Math.atan2(z,x);
+    const bark = Math.sin(angle*9)*0.02 + Math.sin(angle*19 + y*2.5)*0.012;
+    const scale = 1 + bark;
+    pos.setX(i, x*scale);
+    pos.setZ(i, z*scale);
+  }
+  geo.computeVertexNormals();
+  return geo;
+}
+const trunkMat = new THREE.MeshStandardMaterial({
+  map: makeBarkTexture(), bumpMap: makeBarkBumpTexture(), bumpScale: 0.05,
+  color:0xa9814f, roughness:0.9
+});
+const trunk = new THREE.Mesh(buildTrunkGeometry(), trunkMat);
+trunk.position.set(0, 0.9, -1.1);
+root.add(trunk);
+// small knots along the trunk for extra texture, a couple of shades so they don't look stamped
+const knotMatA = new THREE.MeshStandardMaterial({ color:0x241c14, roughness:1 });
+const knotMatB = new THREE.MeshStandardMaterial({ color:0x362817, roughness:1 });
+[[0.32,0.4,0.28,0.09],[-0.3,1.6,-0.2,0.075],[0.25,2.1,0.3,0.06],[-0.27,0.95,-0.32,0.05],[0.12,1.85,0.34,0.045],[-0.05,0.05,-0.36,0.06]]
+  .forEach(([x,y,z,s],i)=>{
+    const knot = new THREE.Mesh(new THREE.SphereGeometry(s,8,8), i%2?knotMatB:knotMatA);
+    knot.position.set(x, y-0.9, z);
+    knot.scale.set(1,0.6,1);
+    trunk.add(knot);
+  });
+// patches of moss on the shaded, damp side near the base
+const mossMat = new THREE.MeshStandardMaterial({ color:0x5d7a3a, roughness:1 });
+[0.15, 1.9, 3.3, 4.6].forEach((ang,i)=>{
+  const localY = -1.5 + i*0.14;
+  const rad = 0.62 - i*0.02;
+  const moss = new THREE.Mesh(new THREE.SphereGeometry(0.1+Math.random()*0.05, 8, 6), mossMat);
+  moss.position.set(Math.cos(ang)*rad, localY, Math.sin(ang)*rad);
+  moss.scale.set(1, 0.3, 1);
+  moss.lookAt(moss.position.clone().multiplyScalar(2));
+  trunk.add(moss);
+});
+const trunkBase = new THREE.Vector3(0, -0.62, -1.1);
+const trunkTop = new THREE.Vector3(0, 2.6, -1.1);
+// visible root collar sitting right on the grass — irregular, buttress-like rather than a clean cylinder
+function buildCollarGeometry(){
+  const geo = new THREE.CylinderGeometry(0.7, 0.85, 0.22, 18, 3);
+  const pos = geo.attributes.position;
+  for (let i=0;i<pos.count;i++){
+    const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+    const angle = Math.atan2(z,x);
+    const bump = Math.sin(angle*5)*0.06 + Math.sin(angle*11 + y*3)*0.03;
+    const scale = 1 + bump;
+    pos.setX(i, x*scale);
+    pos.setZ(i, z*scale);
+  }
+  geo.computeVertexNormals();
+  return geo;
+}
+const collar = new THREE.Mesh(buildCollarGeometry(),
+  new THREE.MeshStandardMaterial({ color:0x6b4f30, roughness:0.95 }));
+collar.position.set(0, -0.86, -1.1);
+root.add(collar);
+
+function buildTaperedTube(curve, radiusStart, radiusEnd, color, roughAmp){
+  roughAmp = roughAmp || 0;
+  const tubularSegments = 16, radialSegments = 8;
+  // build at unit radius, then reshape each ring so the tube tapers from a thick
+  // base (blending into the trunk) down to a thin tip — real branches aren't uniform rods
+  const geo = new THREE.TubeGeometry(curve, tubularSegments, 1, radialSegments, false);
+  const pos = geo.attributes.position;
+  const vertsPerRing = radialSegments + 1;
+  const ringCount = tubularSegments + 1;
+  for (let ring=0; ring<ringCount; ring++){
+    const t = ring/tubularSegments;
+    const center = curve.getPointAt(t);
+    // ease-out taper: stays thicker a bit longer near the base, like real branch flare
+    let r = THREE.MathUtils.lerp(radiusStart, radiusEnd, 1-Math.pow(1-t,1.6));
+    for (let v=0; v<vertsPerRing; v++){
+      const idx = ring*vertsPerRing + v;
+      const x = pos.getX(idx), y = pos.getY(idx), z = pos.getZ(idx);
+      const dx = x-center.x, dy = y-center.y, dz = z-center.z;
+      let rv = r;
+      if (roughAmp){
+        // gnarled, knotty surface — irregular bumps instead of a perfectly smooth taper
+        rv *= 1 + Math.sin(v*2.6 + ring*1.9)*roughAmp*0.55 + Math.sin(ring*0.85 + v*0.4)*roughAmp*0.55;
+      }
+      pos.setXYZ(idx, center.x+dx*rv, center.y+dy*rv, center.z+dz*rv);
+    }
+  }
+  geo.computeVertexNormals();
+  const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color, roughness:0.95 }));
+  mesh.userData.curve = curve;
+  return mesh;
+}
+function curvedBranch(a, mid, b, radiusStart, radiusEnd, color){
+  return buildTaperedTube(new THREE.QuadraticBezierCurve3(a, mid, b), radiusStart, radiusEnd, color);
+}
+// roots get a 4-point organic curve (dip near the soil, then a slight arch) instead of one clean arc,
+// plus surface gnarl — real roots undulate and aren't smooth uniform tubes
+function curvedRoot(points, radiusStart, radiusEnd, color){
+  const curve = new THREE.CatmullRomCurve3(points, false, 'catmullrom', 0.35);
+  return buildTaperedTube(curve, radiusStart, radiusEnd, color, 0.16);
+}
+// a thin secondary rootlet peeling off a main root and diving into the soil
+function addRootlet(parentCurve, t, group, side, color){
+  const base = parentCurve.getPointAt(t);
+  const tangent = parentCurve.getTangentAt(t);
+  const dir = new THREE.Vector3(-tangent.z, 0, tangent.x).normalize().multiplyScalar(side);
+  const out = base.clone().add(dir.clone().multiplyScalar(0.3 + Math.random()*0.15));
+  out.y = base.y - 0.03 - Math.random()*0.03;
+  const tip = out.clone().add(dir.clone().multiplyScalar(0.16 + Math.random()*0.1));
+  tip.y = base.y - 0.15 - Math.random()*0.09;
+  const mid = base.clone().lerp(out, 0.5);
+  mid.y = base.y - 0.02;
+  const rootlet = buildTaperedTube(new THREE.QuadraticBezierCurve3(base, mid, tip), 0.04, 0.01, color, 0.14);
+  group.add(rootlet);
+}
+// trunk's radius at a given world-space height (matches buildTrunkGeometry's cylinder before bark noise)
+function trunkRadiusAt(y){
+  const t = THREE.MathUtils.clamp((y - (-0.8)) / (2.6 - (-0.8)), 0, 1);
+  return THREE.MathUtils.lerp(0.62, 0.32, t);
+}
+// a stretched wood knuckle sitting right where a branch/root meets the trunk,
+// so the seam is hidden under a natural-looking swelling instead of a bare rod poking out
+function addJointCollar(group, point, towardPoint, color){
+  const r = trunkRadiusAt(point.y) * 0.68;
+  const dir = towardPoint.clone().sub(point).normalize();
+  const collar = new THREE.Mesh(
+    new THREE.SphereGeometry(r, 10, 8),
+    new THREE.MeshStandardMaterial({ color, roughness:0.95 })
+  );
+  collar.position.copy(point).add(dir.clone().multiplyScalar(r*0.35));
+  collar.scale.set(1, 1, 1.25);
+  collar.lookAt(collar.position.clone().add(dir));
+  group.add(collar);
+}
+function leafShape(){
+  const s = new THREE.Shape();
+  s.moveTo(0,0);
+  s.quadraticCurveTo(0.055,0.05,0,0.15);
+  s.quadraticCurveTo(-0.055,0.05,0,0);
+  return new THREE.ShapeGeometry(s);
+}
+const leafGeo = leafShape();
+
+function makeLabel(text, bg, fg){
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const scale = 4;
+  const paragraphs = text.split('\n');
+  let lines = [];
+  const maxW = 300*scale/2;
+  ctx.font = `500 ${15*scale}px -apple-system, sans-serif`;
+  paragraphs.forEach(par=>{
+    const words = par.split(' ');
+    let line = '';
+    for (const w of words){
+      const test = line ? line + ' ' + w : w;
+      if (ctx.measureText(test).width > maxW && line){ lines.push(line); line = w; }
+      else line = test;
+    }
+    lines.push(line);
+  });
+  const padX = 22*scale, padY = 16*scale, lineH = 20*scale;
+  const textW = Math.max(...lines.map(l=>ctx.measureText(l).width));
+  canvas.width = textW + padX*2;
+  canvas.height = lines.length*lineH + padY*2;
+  ctx.font = `500 ${15*scale}px -apple-system, sans-serif`;
+  const r = 16*scale;
+  ctx.fillStyle = bg;
+  ctx.beginPath();
+  ctx.moveTo(r,0);
+  ctx.arcTo(canvas.width,0,canvas.width,canvas.height,r);
+  ctx.arcTo(canvas.width,canvas.height,0,canvas.height,r);
+  ctx.arcTo(0,canvas.height,0,0,r);
+  ctx.arcTo(0,0,canvas.width,0,r);
+  ctx.closePath();
+  ctx.fill();
+  ctx.fillStyle = fg;
+  ctx.textBaseline = 'middle';
+  lines.forEach((l,i)=>{
+    const w = ctx.measureText(l).width;
+    ctx.fillText(l, (canvas.width-w)/2, padY + lineH*i + lineH/2);
+  });
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.minFilter = THREE.LinearFilter;
+  const mat = new THREE.SpriteMaterial({ map: tex, transparent:true, depthTest:false, depthWrite:false });
+  const sprite = new THREE.Sprite(mat);
+  sprite.renderOrder = 999;
+  const aspect = canvas.width/canvas.height;
+  const h = 0.55;
+  sprite.scale.set(h*aspect, h, 1);
+  sprite.userData.baseScale = [h*aspect, h];
+  return sprite;
+}
+
+// ---- roots (causas) — resting visibly on top of the grass ----
+const rootY = -0.84;
+const roots = [
+  { p:new THREE.Vector3(-2.4,rootY,-1.6), t:'Influencia social' },
+  { p:new THREE.Vector3(-1.15,rootY,0.35), t:'Falta de autocontrol' },
+  { p:new THREE.Vector3(0.35,rootY,1.15), t:'Disponibilidad constante' },
+  { p:new THREE.Vector3(1.6,rootY,0.25), t:'Muchos estímulos digitales.' },
+  { p:new THREE.Vector3(2.35,rootY,-1.3), t:'Problemas emocionales' },
+];
+roots.forEach((r,i)=>{
+  // grayish, soil-toned browns — visually distinct from the warm tan trunk/branches above ground
+  const rootPalette = [0x5b4a38, 0x4d4030, 0x6a5847];
+  const rColor = rootPalette[i % rootPalette.length];
+  // dip close to the soil first, then a slight arch before settling at the tip — an exposed root undulates
+  const dip = trunkBase.clone().lerp(r.p, 0.3);
+  dip.y = rootY - 0.05 - Math.random()*0.03;
+  const arch = trunkBase.clone().lerp(r.p, 0.68);
+  arch.y = rootY + 0.09 + Math.random()*0.05;
+  addJointCollar(causasGroup, trunkBase, dip, 0x6b4f30);
+  const branch = curvedRoot([trunkBase, dip, arch, r.p], 0.19, 0.04, rColor);
+  causasGroup.add(branch);
+  addRootlet(branch.userData.curve, 0.4, causasGroup, i%2===0 ? 1 : -1, rColor);
+  addRootlet(branch.userData.curve, 0.72, causasGroup, i%2===0 ? -1 : 1, rColor);
+  const label = makeLabel(r.t, '#d9c9a8', '#2c2312');
+  label.position.copy(r.p).add(new THREE.Vector3(0, 0.34, 0));
+  label.userData = { type:'causa', text:r.t, branch };
+  causasGroup.add(label);
+});
+
+// ---- canopy branches (efectos) ----
+const branches = [
+  { p:new THREE.Vector3(-2.5,3.3,-1.5), t:'Problemas de salud' },
+  { p:new THREE.Vector3(-1.0,3.7,0.3), t:'Suicidio' },
+  { p:new THREE.Vector3(0.5,3.95,1.05), t:'Falta de productividad' },
+  { p:new THREE.Vector3(1.85,3.55,0.05), t:'Males psicológicos' },
+  { p:new THREE.Vector3(2.6,3.05,-1.35), t:'Bajo rendimiento académico' },
+];
+// ---- foliage bushes along each branch ----
+const leafMat1 = new THREE.MeshStandardMaterial({ color:0x4c9a3f, roughness:0.9, side:THREE.DoubleSide });
+const leafMat2 = new THREE.MeshStandardMaterial({ color:0x8fd15a, roughness:0.9, side:THREE.DoubleSide });
+const leafMat3 = new THREE.MeshStandardMaterial({ color:0x2f6b2a, roughness:0.9, side:THREE.DoubleSide });
+const leafMats = [leafMat1, leafMat2, leafMat3];
+function addLeafCluster(group, center, count, spread){
+  for (let i=0;i<count;i++){
+    const leaf = new THREE.Mesh(leafGeo, leafMats[i%3]);
+    leaf.position.copy(center).add(new THREE.Vector3(
+      (Math.random()-0.5)*spread, (Math.random()-0.3)*spread*0.8, (Math.random()-0.5)*spread));
+    leaf.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
+    const s = 0.7 + Math.random()*0.9;
+    leaf.scale.set(s,s,s);
+    group.add(leaf);
+  }
+}
+branches.forEach(b=>{
+  const mid = new THREE.Vector3().addVectors(trunkTop, b.p).multiplyScalar(0.5);
+  mid.y += 0.3;
+  addJointCollar(efectosGroup, trunkTop, mid, 0x6b4f30);
+  const branch = curvedBranch(trunkTop, mid, b.p, 0.14, 0.045, 0x6b4f30);
+  efectosGroup.add(branch);
+  [0.45, 0.75, 1.0].forEach(t=>{
+    const pt = branch.userData.curve.getPointAt(t);
+    addLeafCluster(efectosGroup, pt, t===1.0 ? 16 : 9, t===1.0 ? 0.75 : 0.45);
+  });
+  const label = makeLabel(b.t, '#d9c9a8', '#2c2312');
+  const out = b.p.clone().setY(0).normalize();
+  label.position.copy(b.p).add(new THREE.Vector3(out.x*0.35, 0.55, out.z*0.35));
+  label.userData = { type:'efecto', text:b.t, branch };
+  efectosGroup.add(label);
+});
+
+// purple flowers, petal clusters around a yellow center
+const petalMat = new THREE.MeshStandardMaterial({ color:0x8a4fd1, roughness:0.6 });
+const petalMat2 = new THREE.MeshStandardMaterial({ color:0xab7ae8, roughness:0.6 });
+const centerMat = new THREE.MeshStandardMaterial({ color:0xf3d35b, roughness:0.5 });
+function makeFlower(scale){
+  const g = new THREE.Group();
+  const petalCount = 5;
+  for (let i=0;i<petalCount;i++){
+    const petal = new THREE.Mesh(new THREE.SphereGeometry(0.09*scale,8,8), i%2?petalMat:petalMat2);
+    petal.scale.set(1,0.55,1.7);
+    const a = (i/petalCount)*Math.PI*2;
+    petal.position.set(Math.cos(a)*0.09*scale, 0, Math.sin(a)*0.09*scale);
+    petal.lookAt(petal.position.clone().multiplyScalar(2));
+    g.add(petal);
+  }
+  const center = new THREE.Mesh(new THREE.SphereGeometry(0.04*scale,8,8), centerMat);
+  g.add(center);
+  return g;
+}
+const flowerSpots = [
+  [-2.7,3.9,-1.7], [2.8,3.6,-1.6], [-2.6,3.0,-1.9], [0.2,4.2,1.1],
+  [-1.7,4.0,-1.0], [1.4,4.1,0.6], [2.9,2.9,-1.0], [-0.4,3.5,1.6],
+  [-3.0,3.3,-1.3], [1.9,4.2,0.7],
+];
+flowerSpots.forEach((p,i)=>{
+  const flower = makeFlower(0.85 + Math.random()*0.5);
+  flower.position.set(p[0],p[1],p[2]);
+  flower.rotation.y = Math.random()*Math.PI;
+  efectosGroup.add(flower);
+});
+
+// flowers scattered on the grass around the trunk
+for (let i=0;i<16;i++){
+  const a = Math.random()*Math.PI*2;
+  const r = 1.6 + Math.random()*3.4;
+  const x = Math.cos(a)*r, z = -1.1 + Math.sin(a)*r*0.7;
+  if (Math.abs(x) < 0.7 && z > -1.6 && z < 0.2) continue; // keep clear of the trunk base
+  const flower = makeFlower(0.55 + Math.random()*0.35);
+  flower.position.set(x, -0.97, z);
+  flower.rotation.y = Math.random()*Math.PI;
+  root.add(flower);
+}
+
+// ---- soft glow sprites: a warm sun glow, and drifting fireflies for a little magic ----
+function makeGlowTexture(colorStop){
+  const c = document.createElement('canvas'); c.width = 64; c.height = 64;
+  const ctx = c.getContext('2d');
+  const g = ctx.createRadialGradient(32,32,0,32,32,32);
+  g.addColorStop(0, colorStop);
+  g.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = g; ctx.fillRect(0,0,64,64);
+  return new THREE.CanvasTexture(c);
+}
+const sunGlow = new THREE.Sprite(new THREE.SpriteMaterial({
+  map: makeGlowTexture('rgba(255,247,214,0.95)'), transparent:true,
+  blending: THREE.AdditiveBlending, depthWrite:false
+}));
+sunGlow.scale.set(5.5, 5.5, 1);
+sunGlow.position.set(8.4, 9.2, -9);
+root.add(sunGlow);
+
+const fireflyTex = makeGlowTexture('rgba(255,243,176,1)');
+const fireflies = [];
+for (let i=0;i<20;i++){
+  const mat = new THREE.SpriteMaterial({ map: fireflyTex, transparent:true, blending:THREE.AdditiveBlending, depthWrite:false });
+  const s = new THREE.Sprite(mat);
+  const sc = 0.1 + Math.random()*0.07;
+  s.scale.set(sc, sc, 1);
+  const a = Math.random()*Math.PI*2, r = 1.4+Math.random()*3.4;
+  s.userData.baseX = Math.cos(a)*r;
+  s.userData.baseZ = -1.1 + Math.sin(a)*r*0.8;
+  s.userData.baseY = 0.15 + Math.random()*3.4;
+  s.userData.phase = Math.random()*Math.PI*2;
+  s.userData.speed = 0.45 + Math.random()*0.55;
+  s.position.set(s.userData.baseX, s.userData.baseY, s.userData.baseZ);
+  root.add(s);
+  fireflies.push(s);
+}
+
+// ---- butterflies fluttering in loops near the flowering canopy ----
+function makeButterfly(color){
+  const g = new THREE.Group();
+  const wingGeo = new THREE.PlaneGeometry(0.15, 0.11);
+  const wingMat = new THREE.MeshStandardMaterial({ color, side:THREE.DoubleSide, roughness:0.6 });
+  const left = new THREE.Mesh(wingGeo, wingMat);
+  left.geometry.translate(0.075, 0, 0);
+  const right = new THREE.Mesh(wingGeo, wingMat);
+  right.geometry.translate(-0.075, 0, 0);
+  g.add(left, right);
+  g.userData.left = left; g.userData.right = right;
+  return g;
+}
+const butterflyColors = [0xe8a23c, 0xdb5b6b, 0xf3f0e0, 0x8a4fd1];
+const butterflies = [];
+[[-2.6,3.7,-1.5],[2.7,3.3,-1.3],[0.1,4.15,1.0],[-0.6,3.0,1.3]].forEach((p,i)=>{
+  const b = makeButterfly(butterflyColors[i%butterflyColors.length]);
+  b.position.set(p[0],p[1],p[2]);
+  b.userData.center = new THREE.Vector3(p[0],p[1],p[2]);
+  b.userData.radius = 0.35 + Math.random()*0.3;
+  b.userData.speed = 0.55 + Math.random()*0.45;
+  b.userData.phase = Math.random()*Math.PI*2;
+  efectosGroup.add(b);
+  butterflies.push(b);
+});
+
+// ---- title sign, mounted on two posts above the crown ----
+const titleGroup = new THREE.Group();
+const postMat = new THREE.MeshStandardMaterial({ color:0x4a3a26, roughness:0.9 });
+[-1.55, 1.55].forEach(x=>{
+  const post = new THREE.Mesh(new THREE.CylinderGeometry(0.045,0.045,1.1,8), postMat);
+  post.position.set(x, -0.55, 0);
+  titleGroup.add(post);
+});
+const board = new THREE.Mesh(new THREE.BoxGeometry(3.5,0.85,0.08),
+  new THREE.MeshStandardMaterial({ color:0x2c2312, roughness:0.85 }));
+board.position.set(0, 0, 0);
+titleGroup.add(board);
+const titleLabel = makeLabel('Adicción a las redes sociales en\nlos estudiantes de la Universidad Continental', '#2c2312', '#f4e9c9');
+titleLabel.scale.set(titleLabel.scale.x*1.55, titleLabel.scale.y*1.55, 1);
+titleLabel.position.set(0, 0, 0.06);
+titleGroup.add(titleLabel);
+titleGroup.position.set(0, 5.15, -1.1);
+root.add(titleGroup);
+
+
+// ---- interactivity: click labels to focus + show info ----
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+const infoEl = document.getElementById('info');
+const tagEl = infoEl.querySelector('.tag');
+const bodyEl = infoEl.querySelector('.body');
+infoEl.querySelector('.close').addEventListener('click', ()=> hideInfo());
+
+let flyTarget = null, flyLookAt = null, activeSprite = null;
+
+function allSprites(){
+  return [...causasGroup.children, ...efectosGroup.children].filter(o=>o.isSprite);
+}
+
+function focusSprite(sprite){
+  if (activeSprite && activeSprite !== sprite) resetSpriteScale(activeSprite);
+  activeSprite = sprite;
+  const b = sprite.userData.baseScale;
+  sprite.scale.set(b[0]*1.25, b[1]*1.25, 1);
+  const dir = sprite.position.clone().sub(new THREE.Vector3(0,1,-1)).normalize();
+  flyTarget = sprite.position.clone().add(dir.clone().multiplyScalar(2.6)).add(new THREE.Vector3(0,0.3,0));
+  flyLookAt = sprite.position.clone();
+  const isCausa = sprite.userData.type === 'causa';
+  tagEl.textContent = isCausa ? 'Causa' : 'Efecto';
+  tagEl.style.background = isCausa ? 'rgba(201,138,75,0.25)' : 'rgba(125,191,107,0.25)';
+  tagEl.style.color = isCausa ? '#e3b788' : '#a6dd93';
+  bodyEl.textContent = sprite.userData.text;
+  infoEl.classList.add('show');
+  controls.autoRotate = false;
+}
+function resetSpriteScale(sprite){
+  const b = sprite.userData.baseScale;
+  sprite.scale.set(b[0], b[1], 1);
+}
+function hideInfo(){
+  infoEl.classList.remove('show');
+  if (activeSprite) resetSpriteScale(activeSprite);
+  activeSprite = null;
+  flyTarget = null; flyLookAt = null;
+}
+
+function onPointerDown(ev){
+  const rect = renderer.domElement.getBoundingClientRect();
+  const cx = ev.touches ? ev.touches[0].clientX : ev.clientX;
+  const cy = ev.touches ? ev.touches[0].clientY : ev.clientY;
+  pointer.x = ((cx-rect.left)/rect.width)*2-1;
+  pointer.y = -((cy-rect.top)/rect.height)*2+1;
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(allSprites());
+  if (hits.length){
+    focusSprite(hits[0].object);
+  }
+}
+renderer.domElement.addEventListener('click', onPointerDown);
+
+// ---- legend toggle buttons ----
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    const mode = chip.dataset.mode;
+    causasGroup.visible = (mode==='all' || mode==='causas');
+    efectosGroup.visible = (mode==='all' || mode==='efectos');
+    hideInfo();
+  });
+});
+
+function onResize(){
+  camera.aspect = wrap.clientWidth/wrap.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+}
+window.addEventListener('resize', onResize);
+
+function animate(){
+  requestAnimationFrame(animate);
+  const t = performance.now()*0.001;
+  grassBlades.forEach(b=>{
+    b.rotation.z = b.userData.baseRotZ + Math.sin(t*1.4 + b.userData.phase)*0.12;
+  });
+  clouds.forEach(c=>{
+    c.position.x = c.userData.startX + ((t*c.userData.speed) % 24) - 12;
+  });
+  fireflies.forEach(f=>{
+    const tt = t*f.userData.speed + f.userData.phase;
+    f.position.x = f.userData.baseX + Math.sin(tt)*0.4;
+    f.position.z = f.userData.baseZ + Math.cos(tt*0.8)*0.4;
+    f.position.y = f.userData.baseY + Math.sin(tt*1.7)*0.25;
+    f.material.opacity = 0.35 + Math.sin(tt*3)*0.35 + 0.3;
+  });
+  butterflies.forEach(b=>{
+    const tt = t*b.userData.speed + b.userData.phase;
+    const c = b.userData.center;
+    b.position.set(
+      c.x + Math.cos(tt)*b.userData.radius,
+      c.y + Math.sin(tt*2.1)*0.16,
+      c.z + Math.sin(tt)*b.userData.radius*0.6
+    );
+    const flap = Math.sin(t*16 + b.userData.phase)*0.85;
+    b.userData.left.rotation.y = flap;
+    b.userData.right.rotation.y = -flap;
+    const ahead = new THREE.Vector3(c.x + Math.cos(tt+0.15)*b.userData.radius, b.position.y, c.z + Math.sin(tt+0.15)*b.userData.radius*0.6);
+    b.lookAt(ahead);
+  });
+  if (flyTarget){
+    camera.position.lerp(flyTarget, 0.06);
+    controls.target.lerp(flyLookAt, 0.06);
+  }
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+</script>
+</body>
+</html>
