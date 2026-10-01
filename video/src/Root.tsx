@@ -69,6 +69,16 @@ export const RemotionRoot: React.FC = () => {
           width={1080}
           height={1920}
         />
+        <Composition
+          // Short intro that cuts into the concert video, so no fade out.
+          id="CampaignIntro"
+          component={CampaignPromo}
+          durationInFrames={240}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ fadeOut: false }}
+        />
       </Folder>
     </>
   );

@@ -178,7 +178,9 @@ const ANGEL: Rect = { x: 0, y: 525, w: 505, h: 785 };
 const JAMES: Rect = { x: 505, y: 560, w: 519, h: 730 };
 const FOOTER: Rect = { x: 0, y: 1290, w: 1024, h: 246 };
 
-export const CampaignPromo: React.FC = () => {
+export const CampaignPromo: React.FC<{ fadeOut?: boolean }> = ({
+  fadeOut: withFadeOut = true,
+}) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
 
@@ -196,12 +198,11 @@ export const CampaignPromo: React.FC = () => {
   const zoom = interpolate(frame, [0, durationInFrames], [1, 1.06], {
     easing: Easing.inOut(Easing.quad),
   });
-  const fadeOut = interpolate(
-    frame,
-    [durationInFrames - 20, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp" },
-  );
+  const fadeOut = withFadeOut
+    ? interpolate(frame, [durationInFrames - 20, durationInFrames], [1, 0], {
+        extrapolateLeft: "clamp",
+      })
+    : 1;
   const pulse = 1 + 0.03 * Math.sin((frame / fps) * Math.PI * 2);
 
   // Base: the full poster with the animated regions blanked out.
