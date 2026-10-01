@@ -79,6 +79,24 @@ export const RemotionRoot: React.FC = () => {
           height={1920}
           defaultProps={{ fadeOut: false }}
         />
+        <Composition
+          // Longer variants for videos with less concert footage.
+          id="CampaignIntroLong"
+          component={CampaignPromo}
+          durationInFrames={540}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ fadeOut: false }}
+        />
+        <Composition
+          id="CampaignPromoLong"
+          component={CampaignPromo}
+          durationInFrames={480}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
       </Folder>
     </>
   );
