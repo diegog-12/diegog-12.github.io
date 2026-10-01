@@ -73,7 +73,7 @@ export const RemotionRoot: React.FC = () => {
           // Short intro that cuts into the concert video, so no fade out.
           id="CampaignIntro"
           component={CampaignPromo}
-          durationInFrames={240}
+          durationInFrames={360}
           fps={30}
           width={1080}
           height={1920}
