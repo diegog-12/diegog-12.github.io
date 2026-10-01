@@ -1,5 +1,6 @@
 import "./index.css";
 import { Composition, Folder } from "remotion";
+import { CampaignOverlay, CampaignPromo } from "./Campaign";
 import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
 import { Title } from "./HelloWorld/Title";
@@ -51,7 +52,24 @@ export const RemotionRoot: React.FC = () => {
           titleColor: "#000000",
         }}
       />
-
+      <Folder name="Campana">
+        <Composition
+          id="CampaignOverlay"
+          component={CampaignOverlay}
+          durationInFrames={1}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="CampaignPromo"
+          component={CampaignPromo}
+          durationInFrames={450}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+      </Folder>
     </>
   );
 };

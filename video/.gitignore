@@ -5,3 +5,6 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Campaign poster (real people) stays local, not in the public repo
+public/poster.jpg
