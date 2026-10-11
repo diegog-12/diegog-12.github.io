@@ -332,9 +332,9 @@ const EndCard: React.FC = () => {
           lineHeight: 1.05,
         }}
       >
-        La educación
+        ¡Viva la educación
         <br />
-        cambia vidas
+        rural!
       </div>
       <div
         style={{

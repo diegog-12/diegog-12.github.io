@@ -1,7 +1,7 @@
 // Generated from the voice-over timings. Times are in frames (30 fps).
 export const EDU = {
  "fps": 30,
- "duration": 1855,
+ "duration": 1677,
  "voice": [
   {
    "src": "edu/voz0.wav",
@@ -9,35 +9,35 @@ export const EDU = {
   },
   {
    "src": "edu/voz1.wav",
-   "from": 178
+   "from": 166
   },
   {
    "src": "edu/voz2.wav",
-   "from": 397
+   "from": 347
   },
   {
    "src": "edu/voz3.wav",
-   "from": 565
+   "from": 503
   },
   {
    "src": "edu/voz4.wav",
-   "from": 772
+   "from": 703
   },
   {
    "src": "edu/voz5.wav",
-   "from": 943
+   "from": 879
   },
   {
    "src": "edu/voz6.wav",
-   "from": 1253
+   "from": 1141
   },
   {
    "src": "edu/voz7.wav",
-   "from": 1424
+   "from": 1281
   },
   {
    "src": "edu/voz8.wav",
-   "from": 1582
+   "from": 1425
   }
  ],
  "shots": [
@@ -48,7 +48,7 @@ export const EDU = {
    "mode": "cover",
    "offset": 0,
    "from": 0,
-   "dur": 179
+   "dur": 167
   },
   {
    "src": "edu/p04.jpg",
@@ -56,8 +56,8 @@ export const EDU = {
    "fx": 50,
    "mode": "cover",
    "offset": 0,
-   "from": 171,
-   "dur": 117
+   "from": 159,
+   "dur": 98
   },
   {
    "src": "edu/p06.jpg",
@@ -65,8 +65,8 @@ export const EDU = {
    "fx": 40,
    "mode": "cover",
    "offset": 0,
-   "from": 280,
-   "dur": 117
+   "from": 249,
+   "dur": 98
   },
   {
    "src": "edu/p05.jpg",
@@ -74,8 +74,8 @@ export const EDU = {
    "fx": 50,
    "mode": "cover",
    "offset": 0,
-   "from": 389,
-   "dur": 92
+   "from": 339,
+   "dur": 86
   },
   {
    "src": "edu/v2.mp4",
@@ -83,8 +83,8 @@ export const EDU = {
    "fx": 50,
    "mode": "cover",
    "offset": 0,
-   "from": 473,
-   "dur": 92
+   "from": 417,
+   "dur": 86
   },
   {
    "src": "edu/p02.jpg",
@@ -92,8 +92,8 @@ export const EDU = {
    "fx": 50,
    "mode": "crest",
    "offset": 0,
-   "from": 557,
-   "dur": 111
+   "from": 496,
+   "dur": 108
   },
   {
    "src": "edu/p17.jpg",
@@ -101,8 +101,8 @@ export const EDU = {
    "fx": 50,
    "mode": "cover",
    "offset": 0,
-   "from": 661,
-   "dur": 111
+   "from": 595,
+   "dur": 108
   },
   {
    "src": "edu/v1.mp4",
@@ -110,8 +110,8 @@ export const EDU = {
    "fx": 35,
    "mode": "cover",
    "offset": 9.0,
-   "from": 764,
-   "dur": 94
+   "from": 695,
+   "dur": 96
   },
   {
    "src": "edu/p13.jpg",
@@ -119,8 +119,8 @@ export const EDU = {
    "fx": 50,
    "mode": "cover",
    "offset": 0,
-   "from": 850,
-   "dur": 94
+   "from": 783,
+   "dur": 96
   },
   {
    "src": "edu/p11.jpg",
@@ -128,8 +128,8 @@ export const EDU = {
    "fx": 45,
    "mode": "cover",
    "offset": 0,
-   "from": 936,
-   "dur": 85
+   "from": 871,
+   "dur": 74
   },
   {
    "src": "edu/p09.jpg",
@@ -137,8 +137,8 @@ export const EDU = {
    "fx": 45,
    "mode": "contain",
    "offset": 0,
-   "from": 1013,
-   "dur": 85
+   "from": 937,
+   "dur": 74
   },
   {
    "src": "edu/p01.jpg",
@@ -146,8 +146,8 @@ export const EDU = {
    "fx": 50,
    "mode": "cover",
    "offset": 0,
-   "from": 1091,
-   "dur": 85
+   "from": 1002,
+   "dur": 74
   },
   {
    "src": "edu/p10.jpg",
@@ -155,8 +155,8 @@ export const EDU = {
    "fx": 55,
    "mode": "cover",
    "offset": 0,
-   "from": 1168,
-   "dur": 85
+   "from": 1068,
+   "dur": 74
   },
   {
    "src": "edu/p03.jpg",
@@ -164,8 +164,8 @@ export const EDU = {
    "fx": 50,
    "mode": "cover",
    "offset": 0,
-   "from": 1245,
-   "dur": 93
+   "from": 1133,
+   "dur": 78
   },
   {
    "src": "edu/p14.jpg",
@@ -173,8 +173,8 @@ export const EDU = {
    "fx": 50,
    "mode": "cover",
    "offset": 0,
-   "from": 1331,
-   "dur": 93
+   "from": 1203,
+   "dur": 78
   },
   {
    "src": "edu/p16.jpg",
@@ -182,8 +182,8 @@ export const EDU = {
    "fx": 50,
    "mode": "contain",
    "offset": 0,
-   "from": 1416,
-   "dur": 87
+   "from": 1274,
+   "dur": 80
   },
   {
    "src": "edu/p15.jpg",
@@ -191,8 +191,8 @@ export const EDU = {
    "fx": 45,
    "mode": "cover",
    "offset": 0,
-   "from": 1495,
-   "dur": 87
+   "from": 1345,
+   "dur": 80
   },
   {
    "src": "edu/p00.jpg",
@@ -200,922 +200,877 @@ export const EDU = {
    "fx": 50,
    "mode": "cover",
    "offset": 0,
-   "from": 1574,
-   "dur": 193
+   "from": 1417,
+   "dur": 172
   }
  ],
  "captions": [
   {
    "from": 39,
-   "to": 62,
+   "to": 58,
    "words": [
     {
      "t": 39,
-     "w": "En",
+     "w": "¡En",
      "em": false
     },
     {
-     "t": 46,
+     "t": 44,
      "w": "lo",
      "em": false
     },
     {
-     "t": 52,
+     "t": 50,
      "w": "alto",
      "em": false
     }
    ]
   },
   {
-   "from": 62,
-   "to": 93,
+   "from": 58,
+   "to": 85,
    "words": [
     {
-     "t": 62,
+     "t": 58,
      "w": "de",
      "em": false
     },
     {
-     "t": 69,
+     "t": 64,
      "w": "los",
      "em": false
     },
     {
-     "t": 77,
+     "t": 71,
      "w": "Andes,",
      "em": true
     }
    ]
   },
   {
-   "from": 93,
-   "to": 122,
+   "from": 85,
+   "to": 114,
    "words": [
     {
-     "t": 93,
-     "w": "aprender",
+     "t": 85,
+     "w": "hoy",
      "em": false
+    },
+    {
+     "t": 92,
+     "w": "celebramos",
+     "em": true
     },
     {
      "t": 109,
-     "w": "es",
-     "em": false
-    },
-    {
-     "t": 116,
-     "w": "un",
+     "w": "la",
      "em": false
     }
    ]
   },
   {
-   "from": 122,
-   "to": 167,
+   "from": 114,
+   "to": 151,
    "words": [
     {
-     "t": 122,
-     "w": "acto",
+     "t": 114,
+     "w": "educación",
      "em": false
     },
     {
-     "t": 132,
-     "w": "de",
-     "em": false
-    },
-    {
-     "t": 138,
-     "w": "valentía.",
+     "t": 130,
+     "w": "rural!",
      "em": true
     }
    ]
   },
   {
-   "from": 182,
-   "to": 207,
+   "from": 168,
+   "to": 189,
    "words": [
     {
-     "t": 182,
-     "w": "En",
+     "t": 168,
+     "w": "Cada",
      "em": false
     },
     {
-     "t": 188,
-     "w": "las",
-     "em": false
-    },
-    {
-     "t": 196,
-     "w": "zonas",
+     "t": 177,
+     "w": "día,",
      "em": false
     }
    ]
   },
   {
-   "from": 207,
-   "to": 242,
+   "from": 189,
+   "to": 226,
    "words": [
     {
-     "t": 207,
-     "w": "rurales",
+     "t": 189,
+     "w": "nuestros",
      "em": false
     },
     {
-     "t": 221,
-     "w": "del",
-     "em": false
-    },
-    {
-     "t": 228,
-     "w": "Perú,",
-     "em": true
-    }
-   ]
-  },
-  {
-   "from": 242,
-   "to": 280,
-   "words": [
-    {
-     "t": 242,
-     "w": "muchos",
-     "em": false
-    },
-    {
-     "t": 254,
+     "t": 204,
      "w": "niños",
      "em": false
     },
     {
-     "t": 265,
-     "w": "recorren",
+     "t": 214,
+     "w": "cruzan",
      "em": false
     }
    ]
   },
   {
-   "from": 280,
-   "to": 320,
+   "from": 226,
+   "to": 249,
    "words": [
     {
-     "t": 280,
-     "w": "largas",
+     "t": 226,
+     "w": "la",
      "em": false
     },
     {
-     "t": 293,
-     "w": "distancias",
+     "t": 232,
+     "w": "puna",
      "em": false
     },
     {
-     "t": 311,
-     "w": "cada",
+     "t": 241,
+     "w": "con",
      "em": false
     }
    ]
   },
   {
-   "from": 320,
-   "to": 350,
+   "from": 249,
+   "to": 274,
    "words": [
     {
-     "t": 320,
-     "w": "día",
+     "t": 249,
+     "w": "una",
      "em": false
     },
     {
-     "t": 328,
-     "w": "para",
+     "t": 256,
+     "w": "sonrisa",
+     "em": true
+    },
+    {
+     "t": 270,
+     "w": "y",
+     "em": false
+    }
+   ]
+  },
+  {
+   "from": 274,
+   "to": 303,
+   "words": [
+    {
+     "t": 274,
+     "w": "muchas",
      "em": false
     },
     {
-     "t": 337,
-     "w": "llegar",
+     "t": 286,
+     "w": "ganas",
      "em": false
+    },
+    {
+     "t": 297,
+     "w": "de",
+     "em": false
+    }
+   ]
+  },
+  {
+   "from": 303,
+   "to": 330,
+   "words": [
+    {
+     "t": 303,
+     "w": "aprender.",
+     "em": true
     }
    ]
   },
   {
    "from": 350,
-   "to": 386,
+   "to": 371,
    "words": [
     {
      "t": 350,
-     "w": "a",
+     "w": "Ni",
      "em": false
     },
     {
-     "t": 354,
-     "w": "su",
+     "t": 356,
+     "w": "el",
      "em": false
     },
     {
-     "t": 360,
-     "w": "escuela.",
-     "em": true
+     "t": 362,
+     "w": "frío",
+     "em": false
     }
    ]
   },
   {
-   "from": 401,
-   "to": 423,
+   "from": 371,
+   "to": 396,
    "words": [
     {
-     "t": 401,
-     "w": "El",
+     "t": 371,
+     "w": "ni",
      "em": false
     },
     {
-     "t": 407,
-     "w": "frío,",
+     "t": 377,
+     "w": "la",
+     "em": false
+    },
+    {
+     "t": 383,
+     "w": "altura",
+     "em": false
+    }
+   ]
+  },
+  {
+   "from": 396,
+   "to": 423,
+   "words": [
+    {
+     "t": 396,
+     "w": "los",
+     "em": false
+    },
+    {
+     "t": 403,
+     "w": "detienen:",
      "em": false
     }
    ]
   },
   {
    "from": 423,
-   "to": 448,
+   "to": 458,
    "words": [
     {
      "t": 423,
-     "w": "la",
+     "w": "aquí",
      "em": false
     },
     {
-     "t": 430,
-     "w": "altura",
+     "t": 432,
+     "w": "sobran",
      "em": false
     },
     {
-     "t": 443,
-     "w": "y",
-     "em": false
-    }
-   ]
-  },
-  {
-   "from": 448,
-   "to": 474,
-   "words": [
-    {
-     "t": 448,
-     "w": "la",
-     "em": false
-    },
-    {
-     "t": 455,
-     "w": "falta",
-     "em": false
-    },
-    {
-     "t": 467,
-     "w": "de",
-     "em": false
-    }
-   ]
-  },
-  {
-   "from": 474,
-   "to": 517,
-   "words": [
-    {
-     "t": 474,
-     "w": "recursos",
-     "em": false
-    },
-    {
-     "t": 491,
-     "w": "forman",
-     "em": false
-    },
-    {
-     "t": 505,
-     "w": "parte",
-     "em": false
-    }
-   ]
-  },
-  {
-   "from": 517,
-   "to": 557,
-   "words": [
-    {
-     "t": 517,
-     "w": "de",
-     "em": false
-    },
-    {
-     "t": 524,
-     "w": "su",
-     "em": false
-    },
-    {
-     "t": 531,
-     "w": "rutina.",
+     "t": 445,
+     "w": "alegría",
      "em": true
     }
    ]
   },
   {
-   "from": 568,
-   "to": 595,
+   "from": 458,
+   "to": 489,
    "words": [
     {
-     "t": 568,
-     "w": "Pero",
+     "t": 458,
+     "w": "y",
      "em": false
     },
     {
-     "t": 579,
-     "w": "aquí,",
-     "em": false
+     "t": 463,
+     "w": "corazón.",
+     "em": true
     }
    ]
   },
   {
-   "from": 595,
-   "to": 634,
+   "from": 506,
+   "to": 538,
    "words": [
     {
-     "t": 595,
-     "w": "en",
+     "t": 506,
+     "w": "¡Bienvenidos",
      "em": false
     },
     {
-     "t": 603,
+     "t": 527,
+     "w": "a",
+     "em": false
+    },
+    {
+     "t": 532,
      "w": "la",
      "em": false
-    },
-    {
-     "t": 610,
-     "w": "Institución",
-     "em": false
     }
    ]
   },
   {
-   "from": 634,
-   "to": 684,
+   "from": 538,
+   "to": 604,
    "words": [
     {
-     "t": 634,
+     "t": 538,
+     "w": "Institución",
+     "em": false
+    },
+    {
+     "t": 560,
      "w": "Educativa",
      "em": false
     },
     {
-     "t": 654,
+     "t": 578,
      "w": "Corpacancha,",
      "em": true
     }
    ]
   },
   {
-   "from": 684,
-   "to": 709,
+   "from": 604,
+   "to": 632,
    "words": [
     {
-     "t": 684,
+     "t": 604,
+     "w": "donde",
+     "em": false
+    },
+    {
+     "t": 615,
      "w": "la",
      "em": false
     },
     {
-     "t": 691,
+     "t": 622,
      "w": "puna",
-     "em": false
-    },
-    {
-     "t": 702,
-     "w": "se",
      "em": false
     }
    ]
   },
   {
-   "from": 709,
-   "to": 761,
+   "from": 632,
+   "to": 663,
    "words": [
     {
-     "t": 709,
+     "t": 632,
+     "w": "se",
+     "em": false
+    },
+    {
+     "t": 638,
      "w": "convierte",
      "em": false
     },
     {
-     "t": 729,
+     "t": 656,
      "w": "en",
      "em": false
-    },
+    }
+   ]
+  },
+  {
+   "from": 663,
+   "to": 685,
+   "words": [
     {
-     "t": 737,
-     "w": "aula.",
+     "t": 663,
+     "w": "aula!",
      "em": true
     }
    ]
   },
   {
-   "from": 773,
-   "to": 807,
+   "from": 705,
+   "to": 734,
    "words": [
     {
-     "t": 773,
-     "w": "Se",
+     "t": 705,
+     "w": "Aquí",
      "em": false
     },
     {
-     "t": 780,
+     "t": 714,
+     "w": "se",
+     "em": false
+    },
+    {
+     "t": 720,
      "w": "aprende",
-     "em": false
-    },
-    {
-     "t": 795,
-     "w": "sobre",
      "em": false
     }
    ]
   },
   {
-   "from": 807,
-   "to": 830,
+   "from": 734,
+   "to": 766,
    "words": [
     {
-     "t": 807,
+     "t": 734,
+     "w": "sobre",
+     "em": false
+    },
+    {
+     "t": 745,
      "w": "una",
      "em": false
     },
     {
-     "t": 815,
+     "t": 752,
      "w": "roca,",
      "em": false
     }
    ]
   },
   {
-   "from": 830,
-   "to": 856,
+   "from": 766,
+   "to": 790,
    "words": [
     {
-     "t": 830,
+     "t": 766,
      "w": "en",
      "em": false
     },
     {
-     "t": 836,
+     "t": 772,
      "w": "medio",
      "em": false
     },
     {
-     "t": 848,
+     "t": 783,
      "w": "del",
      "em": false
     }
    ]
   },
   {
-   "from": 856,
-   "to": 873,
+   "from": 790,
+   "to": 813,
    "words": [
     {
-     "t": 856,
-     "w": "campo,",
+     "t": 790,
+     "w": "campo",
+     "em": false
+    },
+    {
+     "t": 801,
+     "w": "y",
+     "em": false
+    },
+    {
+     "t": 806,
+     "w": "con",
      "em": false
     }
    ]
   },
   {
-   "from": 873,
-   "to": 899,
+   "from": 813,
+   "to": 839,
    "words": [
     {
-     "t": 873,
-     "w": "con",
-     "em": false
-    },
-    {
-     "t": 881,
+     "t": 813,
      "w": "el",
      "em": false
     },
     {
-     "t": 888,
+     "t": 819,
      "w": "cielo",
+     "em": false
+    },
+    {
+     "t": 830,
+     "w": "como",
      "em": false
     }
    ]
   },
   {
-   "from": 899,
-   "to": 934,
+   "from": 839,
+   "to": 862,
    "words": [
     {
-     "t": 899,
-     "w": "como",
-     "em": false
-    },
-    {
-     "t": 909,
+     "t": 839,
      "w": "techo.",
      "em": true
     }
    ]
   },
   {
-   "from": 947,
-   "to": 1003,
+   "from": 881,
+   "to": 925,
    "words": [
     {
-     "t": 947,
-     "w": "Docentes",
+     "t": 881,
+     "w": "Nuestros",
      "em": false
     },
     {
-     "t": 963,
-     "w": "comprometidos",
+     "t": 898,
+     "w": "profes",
      "em": false
     },
     {
-     "t": 988,
+     "t": 911,
      "w": "enseñan",
      "em": false
     }
    ]
   },
   {
-   "from": 1003,
-   "to": 1033,
+   "from": 925,
+   "to": 951,
    "words": [
     {
-     "t": 1003,
+     "t": 925,
      "w": "con",
      "em": false
     },
     {
-     "t": 1011,
-     "w": "vocación",
+     "t": 933,
+     "w": "cariño",
      "em": true
     },
     {
-     "t": 1028,
+     "t": 946,
      "w": "y",
      "em": false
     }
    ]
   },
   {
-   "from": 1033,
-   "to": 1059,
+   "from": 951,
+   "to": 977,
    "words": [
     {
-     "t": 1033,
+     "t": 951,
      "w": "creatividad:",
      "em": true
     }
    ]
   },
   {
-   "from": 1059,
-   "to": 1104,
+   "from": 977,
+   "to": 1021,
    "words": [
     {
-     "t": 1059,
+     "t": 977,
      "w": "ferias",
      "em": false
     },
     {
-     "t": 1072,
+     "t": 990,
      "w": "de",
      "em": false
     },
     {
-     "t": 1079,
+     "t": 997,
      "w": "matemática,",
      "em": false
     }
    ]
   },
   {
-   "from": 1104,
-   "to": 1143,
+   "from": 1021,
+   "to": 1060,
    "words": [
     {
-     "t": 1104,
+     "t": 1021,
      "w": "maratones",
      "em": false
     },
     {
-     "t": 1122,
+     "t": 1039,
      "w": "de",
      "em": false
     },
     {
-     "t": 1129,
+     "t": 1045,
      "w": "lectura",
      "em": false
     }
    ]
   },
   {
-   "from": 1143,
-   "to": 1175,
+   "from": 1060,
+   "to": 1095,
    "words": [
     {
-     "t": 1143,
+     "t": 1060,
      "w": "y",
      "em": false
     },
     {
-     "t": 1148,
+     "t": 1065,
      "w": "proyectos",
      "em": false
     },
     {
-     "t": 1167,
-     "w": "que",
+     "t": 1082,
+     "w": "llenos",
      "em": false
     }
    ]
   },
   {
-   "from": 1175,
-   "to": 1200,
+   "from": 1095,
+   "to": 1126,
    "words": [
     {
-     "t": 1175,
-     "w": "nacen",
-     "em": false
-    },
-    {
-     "t": 1186,
+     "t": 1095,
      "w": "de",
      "em": false
     },
     {
-     "t": 1193,
-     "w": "su",
-     "em": false
+     "t": 1102,
+     "w": "color.",
+     "em": true
     }
    ]
   },
   {
-   "from": 1200,
-   "to": 1242,
+   "from": 1142,
+   "to": 1168,
    "words": [
     {
-     "t": 1200,
-     "w": "propia",
+     "t": 1142,
+     "w": "Cada",
      "em": false
     },
     {
-     "t": 1213,
-     "w": "realidad.",
-     "em": false
-    }
-   ]
-  },
-  {
-   "from": 1256,
-   "to": 1287,
-   "words": [
-    {
-     "t": 1256,
-     "w": "Porque",
-     "em": false
-    },
-    {
-     "t": 1269,
-     "w": "cada",
-     "em": false
-    },
-    {
-     "t": 1278,
+     "t": 1151,
      "w": "niño",
      "em": false
+    },
+    {
+     "t": 1161,
+     "w": "que",
+     "em": false
     }
    ]
   },
   {
-   "from": 1287,
-   "to": 1315,
+   "from": 1168,
+   "to": 1196,
    "words": [
     {
-     "t": 1287,
-     "w": "que",
-     "em": false
-    },
-    {
-     "t": 1295,
+     "t": 1168,
      "w": "aprende",
      "em": false
     },
     {
-     "t": 1309,
+     "t": 1182,
      "w": "es",
      "em": false
-    }
-   ]
-  },
-  {
-   "from": 1315,
-   "to": 1342,
-   "words": [
+    },
     {
-     "t": 1315,
+     "t": 1189,
      "w": "una",
      "em": false
-    },
-    {
-     "t": 1322,
-     "w": "puerta",
-     "em": false
-    },
-    {
-     "t": 1335,
-     "w": "que",
-     "em": false
     }
    ]
   },
   {
-   "from": 1342,
-   "to": 1367,
+   "from": 1196,
+   "to": 1227,
    "words": [
     {
-     "t": 1342,
-     "w": "se",
-     "em": false
+     "t": 1196,
+     "w": "fiesta",
+     "em": true
     },
     {
-     "t": 1349,
-     "w": "abre",
-     "em": false
-    },
-    {
-     "t": 1358,
+     "t": 1209,
      "w": "para",
      "em": false
+    },
+    {
+     "t": 1218,
+     "w": "toda",
+     "em": false
     }
    ]
   },
   {
-   "from": 1367,
-   "to": 1411,
+   "from": 1227,
+   "to": 1263,
    "words": [
     {
-     "t": 1367,
-     "w": "toda",
-     "em": false
-    },
-    {
-     "t": 1376,
+     "t": 1227,
      "w": "su",
      "em": false
     },
     {
-     "t": 1382,
+     "t": 1234,
      "w": "comunidad.",
      "em": true
     }
    ]
   },
   {
+   "from": 1284,
+   "to": 1309,
+   "words": [
+    {
+     "t": 1284,
+     "w": "¡Gracias",
+     "em": true
+    },
+    {
+     "t": 1298,
+     "w": "a",
+     "em": false
+    },
+    {
+     "t": 1302,
+     "w": "las",
+     "em": false
+    }
+   ]
+  },
+  {
+   "from": 1309,
+   "to": 1329,
+   "words": [
+    {
+     "t": 1309,
+     "w": "familias,",
+     "em": false
+    }
+   ]
+  },
+  {
+   "from": 1329,
+   "to": 1355,
+   "words": [
+    {
+     "t": 1329,
+     "w": "a",
+     "em": false
+    },
+    {
+     "t": 1333,
+     "w": "los",
+     "em": false
+    },
+    {
+     "t": 1340,
+     "w": "docentes",
+     "em": false
+    }
+   ]
+  },
+  {
+   "from": 1355,
+   "to": 1379,
+   "words": [
+    {
+     "t": 1355,
+     "w": "y",
+     "em": false
+    },
+    {
+     "t": 1359,
+     "w": "a",
+     "em": false
+    },
+    {
+     "t": 1364,
+     "w": "nuestros",
+     "em": false
+    }
+   ]
+  },
+  {
+   "from": 1379,
+   "to": 1410,
+   "words": [
+    {
+     "t": 1379,
+     "w": "estudiantes!",
+     "em": true
+    }
+   ]
+  },
+  {
    "from": 1427,
-   "to": 1466,
+   "to": 1464,
    "words": [
     {
      "t": 1427,
-     "w": "La",
+     "w": "¡Comparte",
      "em": false
     },
     {
-     "t": 1434,
-     "w": "educación",
-     "em": false
-    },
-    {
-     "t": 1454,
-     "w": "rural",
-     "em": false
-    }
-   ]
-  },
-  {
-   "from": 1466,
-   "to": 1513,
-   "words": [
-    {
-     "t": 1466,
-     "w": "no",
-     "em": false
-    },
-    {
-     "t": 1473,
-     "w": "necesita",
-     "em": false
-    },
-    {
-     "t": 1491,
-     "w": "lástima.",
-     "em": true
-    }
-   ]
-  },
-  {
-   "from": 1513,
-   "to": 1571,
-   "words": [
-    {
-     "t": 1513,
-     "w": "Necesita",
-     "em": false
-    },
-    {
-     "t": 1531,
-     "w": "oportunidades.",
-     "em": true
-    }
-   ]
-  },
-  {
-   "from": 1585,
-   "to": 1628,
-   "words": [
-    {
-     "t": 1585,
-     "w": "Comparte",
-     "em": false
-    },
-    {
-     "t": 1604,
+     "t": 1443,
      "w": "este",
      "em": false
     },
     {
-     "t": 1615,
+     "t": 1453,
      "w": "video",
      "em": false
     }
    ]
   },
   {
-   "from": 1628,
-   "to": 1658,
+   "from": 1464,
+   "to": 1491,
    "words": [
     {
-     "t": 1628,
+     "t": 1464,
      "w": "y",
      "em": false
     },
     {
-     "t": 1633,
-     "w": "ayúdanos",
-     "em": false
+     "t": 1469,
+     "w": "celebra",
+     "em": true
     },
     {
-     "t": 1652,
-     "w": "a",
+     "t": 1483,
+     "w": "con",
      "em": false
     }
    ]
   },
   {
-   "from": 1658,
-   "to": 1684,
+   "from": 1491,
+   "to": 1531,
    "words": [
     {
-     "t": 1658,
-     "w": "que",
+     "t": 1491,
+     "w": "nosotros",
      "em": false
     },
     {
-     "t": 1667,
-     "w": "su",
+     "t": 1507,
+     "w": "la",
      "em": false
     },
     {
-     "t": 1675,
-     "w": "voz",
+     "t": 1513,
+     "w": "educación",
      "em": false
     }
    ]
   },
   {
-   "from": 1684,
-   "to": 1734,
+   "from": 1531,
+   "to": 1554,
    "words": [
     {
-     "t": 1684,
-     "w": "llegue",
-     "em": false
-    },
-    {
-     "t": 1699,
-     "w": "más",
-     "em": false
-    },
-    {
-     "t": 1708,
-     "w": "lejos.",
+     "t": 1531,
+     "w": "rural!",
      "em": true
     }
    ]
   }
  ],
- "endCard": 1747
+ "endCard": 1569
 } as const;
