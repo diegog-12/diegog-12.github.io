@@ -1,6 +1,8 @@
 import "./index.css";
 import { Composition, Folder } from "remotion";
 import { CampaignOverlay, CampaignPromo } from "./Campaign";
+import { EduRural } from "./EduRural";
+import { EDU } from "./eduData";
 import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
 import { Title } from "./HelloWorld/Title";
@@ -98,6 +100,14 @@ export const RemotionRoot: React.FC = () => {
           height={1920}
         />
       </Folder>
+      <Composition
+        id="EduRural"
+        component={EduRural}
+        durationInFrames={EDU.duration}
+        fps={EDU.fps}
+        width={1080}
+        height={1920}
+      />
     </>
   );
 };

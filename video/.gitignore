@@ -8,3 +8,5 @@ out
 
 # Campaign poster (real people) stays local, not in the public repo
 public/poster.jpg
+# Rural education project material (photos of minors) stays local
+public/edu/
