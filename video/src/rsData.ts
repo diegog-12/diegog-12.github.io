@@ -50,783 +50,783 @@ export const RS = {
  ],
  "captions": [
   {
-   "from": 47,
-   "to": 66,
+   "from": 50,
+   "to": 70,
    "words": [
     {
-     "t": 47,
+     "t": 50,
      "w": "Son",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 53,
+     "t": 57,
      "w": "las",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 60,
+     "t": 63,
      "w": "dos",
-     "em": true
+     "style": "script"
     }
    ]
   },
   {
-   "from": 66,
-   "to": 100,
+   "from": 70,
+   "to": 105,
    "words": [
     {
-     "t": 66,
+     "t": 70,
      "w": "de",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 71,
+     "t": 75,
      "w": "la",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 76,
-     "w": "mañana.",
-     "em": false
+     "t": 80,
+     "w": "mañana",
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 242,
-   "to": 285,
+   "from": 246,
+   "to": 281,
    "words": [
     {
-     "t": 242,
+     "t": 246,
      "w": "Mañana",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 256,
+     "t": 257,
      "w": "tienes",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 269,
-     "w": "clase,",
-     "em": false
+     "t": 268,
+     "w": "clase",
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 285,
-   "to": 315,
+   "from": 281,
+   "to": 305,
    "words": [
     {
-     "t": 285,
+     "t": 281,
      "w": "pero",
-     "em": false
+     "style": "sans"
+    },
+    {
+     "t": 289,
+     "w": "tu",
+     "style": "sans"
     },
     {
      "t": 295,
-     "w": "tu",
-     "em": false
-    },
-    {
-     "t": 302,
      "w": "pulgar",
-     "em": true
+     "style": "script"
     }
    ]
   },
   {
-   "from": 315,
-   "to": 359,
+   "from": 305,
+   "to": 343,
    "words": [
     {
-     "t": 315,
+     "t": 305,
      "w": "no",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 322,
+     "t": 311,
      "w": "se",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 328,
-     "w": "detiene.",
-     "em": false
+     "t": 316,
+     "w": "detiene",
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 392,
-   "to": 428,
+   "from": 396,
+   "to": 423,
    "words": [
     {
-     "t": 392,
+     "t": 396,
      "w": "Un",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 399,
+     "t": 402,
      "w": "video",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 413,
-     "w": "más.",
-     "em": true
+     "t": 412,
+     "w": "más",
+     "style": "script"
     }
    ]
   },
   {
-   "from": 428,
-   "to": 471,
+   "from": 423,
+   "to": 457,
    "words": [
     {
-     "t": 428,
+     "t": 423,
      "w": "Una",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 437,
+     "t": 431,
      "w": "historia",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 456,
-     "w": "más.",
-     "em": true
+     "t": 445,
+     "w": "más",
+     "style": "script"
     }
    ]
   },
   {
-   "from": 471,
-   "to": 513,
+   "from": 457,
+   "to": 488,
    "words": [
     {
-     "t": 471,
+     "t": 457,
      "w": "Solo",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 482,
+     "t": 465,
      "w": "cinco",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 496,
+     "t": 475,
      "w": "minutos",
-     "em": false
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 513,
-   "to": 538,
+   "from": 488,
+   "to": 510,
    "words": [
     {
-     "t": 513,
-     "w": "más.",
-     "em": true
+     "t": 488,
+     "w": "más",
+     "style": "script"
     }
    ]
   },
   {
-   "from": 662,
-   "to": 683,
+   "from": 666,
+   "to": 680,
    "words": [
     {
-     "t": 662,
-     "w": "Afuera,",
-     "em": false
+     "t": 666,
+     "w": "Afuera",
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 683,
-   "to": 725,
+   "from": 680,
+   "to": 707,
    "words": [
     {
-     "t": 683,
+     "t": 680,
      "w": "el",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 690,
+     "t": 685,
      "w": "tiempo",
-     "em": true
+     "style": "script"
     },
     {
-     "t": 706,
-     "w": "vuela.",
-     "em": true
+     "t": 695,
+     "w": "vuela",
+     "style": "script"
     }
    ]
   },
   {
-   "from": 725,
-   "to": 753,
+   "from": 707,
+   "to": 726,
    "words": [
     {
-     "t": 725,
+     "t": 707,
      "w": "La",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 732,
+     "t": 712,
      "w": "noche",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 745,
+     "t": 721,
      "w": "se",
-     "em": false
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 753,
-   "to": 783,
+   "from": 726,
+   "to": 746,
    "words": [
     {
-     "t": 753,
+     "t": 726,
      "w": "vuelve",
-     "em": false
+     "style": "sans"
+    },
+    {
+     "t": 736,
+     "w": "día",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 746,
+   "to": 761,
+   "words": [
+    {
+     "t": 746,
+     "w": "y",
+     "style": "sans"
+    },
+    {
+     "t": 749,
+     "w": "el",
+     "style": "sans"
+    },
+    {
+     "t": 754,
+     "w": "día",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 761,
+   "to": 797,
+   "words": [
+    {
+     "t": 761,
+     "w": "otra",
+     "style": "sans"
     },
     {
      "t": 768,
-     "w": "día,",
-     "em": false
-    }
-   ]
-  },
-  {
-   "from": 783,
-   "to": 806,
-   "words": [
-    {
-     "t": 783,
-     "w": "y",
-     "em": false
-    },
-    {
-     "t": 789,
-     "w": "el",
-     "em": false
-    },
-    {
-     "t": 797,
-     "w": "día",
-     "em": false
-    }
-   ]
-  },
-  {
-   "from": 806,
-   "to": 856,
-   "words": [
-    {
-     "t": 806,
-     "w": "otra",
-     "em": false
-    },
-    {
-     "t": 817,
      "w": "vez",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 827,
-     "w": "noche.",
-     "em": false
+     "t": 774,
+     "w": "noche",
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 1052,
-   "to": 1091,
+   "from": 1056,
+   "to": 1090,
    "words": [
     {
-     "t": 1052,
+     "t": 1056,
      "w": "Cada",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1061,
+     "t": 1065,
      "w": "notificación",
-     "em": true
+     "style": "script"
     },
     {
-     "t": 1084,
+     "t": 1085,
      "w": "te",
-     "em": false
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 1091,
-   "to": 1132,
+   "from": 1090,
+   "to": 1126,
    "words": [
     {
-     "t": 1091,
+     "t": 1090,
      "w": "promete",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1106,
+     "t": 1103,
      "w": "algo",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1116,
-     "w": "nuevo,",
-     "em": false
+     "t": 1112,
+     "w": "nuevo",
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 1132,
-   "to": 1155,
+   "from": 1126,
+   "to": 1146,
    "words": [
     {
-     "t": 1132,
+     "t": 1126,
      "w": "y",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1137,
+     "t": 1130,
      "w": "cada",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1147,
+     "t": 1139,
      "w": "vez",
-     "em": false
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 1155,
-   "to": 1183,
+   "from": 1146,
+   "to": 1170,
    "words": [
     {
-     "t": 1155,
+     "t": 1146,
      "w": "te",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1162,
+     "t": 1151,
      "w": "cuesta",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1175,
+     "t": 1163,
      "w": "más",
-     "em": true
+     "style": "script"
     }
    ]
   },
   {
-   "from": 1183,
-   "to": 1233,
+   "from": 1170,
+   "to": 1214,
    "words": [
     {
-     "t": 1183,
+     "t": 1170,
      "w": "soltar",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1196,
+     "t": 1181,
      "w": "el",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1203,
-     "w": "celular.",
-     "em": false
+     "t": 1187,
+     "w": "celular",
+     "style": "script"
     }
    ]
   },
   {
-   "from": 1397,
-   "to": 1432,
+   "from": 1401,
+   "to": 1431,
    "words": [
     {
-     "t": 1397,
+     "t": 1401,
      "w": "Sin",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1405,
+     "t": 1408,
      "w": "darte",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1416,
-     "w": "cuenta,",
-     "em": false
+     "t": 1417,
+     "w": "cuenta",
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 1432,
-   "to": 1457,
+   "from": 1431,
+   "to": 1452,
    "words": [
     {
-     "t": 1432,
+     "t": 1431,
      "w": "las",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1440,
+     "t": 1438,
      "w": "redes",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1451,
+     "t": 1447,
      "w": "se",
-     "em": false
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 1457,
-   "to": 1489,
+   "from": 1452,
+   "to": 1480,
    "words": [
     {
-     "t": 1457,
+     "t": 1452,
      "w": "convierten",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1476,
+     "t": 1468,
      "w": "en",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1482,
+     "t": 1473,
      "w": "una",
-     "em": false
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 1489,
-   "to": 1515,
+   "from": 1480,
+   "to": 1504,
    "words": [
     {
-     "t": 1489,
-     "w": "jaula.",
-     "em": true
+     "t": 1480,
+     "w": "jaula",
+     "style": "shout"
     }
    ]
   },
   {
-   "from": 1593,
-   "to": 1625,
+   "from": 1596,
+   "to": 1620,
    "words": [
     {
-     "t": 1593,
+     "t": 1596,
      "w": "Menos",
-     "em": false
+     "style": "sans"
     },
     {
      "t": 1606,
-     "w": "sueño.",
-     "em": true
+     "w": "sueño",
+     "style": "script"
     }
    ]
   },
   {
-   "from": 1625,
-   "to": 1672,
+   "from": 1620,
+   "to": 1654,
    "words": [
     {
-     "t": 1625,
+     "t": 1620,
      "w": "Menos",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1638,
-     "w": "concentración.",
-     "em": true
+     "t": 1629,
+     "w": "concentración",
+     "style": "script"
     }
    ]
   },
   {
-   "from": 1672,
-   "to": 1716,
+   "from": 1654,
+   "to": 1689,
    "words": [
     {
-     "t": 1672,
+     "t": 1654,
      "w": "Más",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1681,
-     "w": "ansiedad.",
-     "em": true
+     "t": 1661,
+     "w": "ansiedad",
+     "style": "shout"
     }
    ]
   },
   {
-   "from": 1833,
-   "to": 1856,
+   "from": 1836,
+   "to": 1857,
    "words": [
     {
-     "t": 1833,
+     "t": 1836,
      "w": "Pero",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1841,
+     "t": 1844,
      "w": "la",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1847,
+     "t": 1848,
      "w": "llave",
-     "em": true
+     "style": "script"
     }
    ]
   },
   {
-   "from": 1856,
-   "to": 1886,
+   "from": 1857,
+   "to": 1882,
    "words": [
     {
-     "t": 1856,
+     "t": 1857,
      "w": "siempre",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1869,
+     "t": 1868,
      "w": "estuvo",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1880,
+     "t": 1877,
      "w": "en",
-     "em": false
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 1886,
-   "to": 1914,
+   "from": 1882,
+   "to": 1908,
    "words": [
     {
-     "t": 1886,
+     "t": 1882,
      "w": "tu",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 1891,
-     "w": "mano.",
-     "em": false
+     "t": 1887,
+     "w": "mano",
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 2013,
-   "to": 2071,
+   "from": 2016,
+   "to": 2062,
    "words": [
     {
-     "t": 2013,
+     "t": 2016,
      "w": "Silencia",
-     "em": true
+     "style": "sans"
     },
     {
      "t": 2030,
      "w": "las",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 2038,
-     "w": "notificaciones.",
-     "em": false
+     "t": 2036,
+     "w": "notificaciones",
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 2071,
-   "to": 2110,
+   "from": 2062,
+   "to": 2093,
    "words": [
+    {
+     "t": 2062,
+     "w": "Ponte",
+     "style": "sans"
+    },
     {
      "t": 2071,
-     "w": "Ponte",
-     "em": false
-    },
-    {
-     "t": 2083,
      "w": "un",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 2089,
-     "w": "horario.",
-     "em": true
+     "t": 2077,
+     "w": "horario",
+     "style": "script"
     }
    ]
   },
   {
-   "from": 2110,
-   "to": 2140,
+   "from": 2093,
+   "to": 2117,
    "words": [
     {
-     "t": 2110,
+     "t": 2093,
      "w": "Vuelve",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 2123,
+     "t": 2103,
      "w": "a",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 2128,
+     "t": 2107,
      "w": "mirar",
-     "em": false
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 2140,
-   "to": 2187,
+   "from": 2117,
+   "to": 2155,
    "words": [
     {
-     "t": 2140,
+     "t": 2117,
      "w": "a",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 2145,
+     "t": 2121,
      "w": "tu",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 2152,
-     "w": "alrededor.",
-     "em": true
+     "t": 2126,
+     "w": "alrededor",
+     "style": "script"
     }
    ]
   },
   {
-   "from": 2224,
-   "to": 2245,
+   "from": 2226,
+   "to": 2246,
    "words": [
     {
-     "t": 2224,
+     "t": 2226,
      "w": "Tus",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 2231,
-     "w": "metas,",
-     "em": true
+     "t": 2233,
+     "w": "metas",
+     "style": "script"
     }
    ]
   },
   {
-   "from": 2245,
-   "to": 2268,
+   "from": 2246,
+   "to": 2267,
    "words": [
     {
-     "t": 2245,
+     "t": 2246,
      "w": "tus",
-     "em": false
+     "style": "sans"
     },
     {
      "t": 2252,
      "w": "amigos",
-     "em": true
+     "style": "script"
     },
     {
-     "t": 2264,
+     "t": 2263,
      "w": "y",
-     "em": false
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 2268,
-   "to": 2291,
+   "from": 2267,
+   "to": 2288,
    "words": [
     {
-     "t": 2268,
+     "t": 2267,
      "w": "tu",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 2274,
+     "t": 2272,
      "w": "futuro",
-     "em": true
+     "style": "script"
     },
     {
-     "t": 2285,
+     "t": 2282,
      "w": "te",
-     "em": false
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 2291,
-   "to": 2320,
+   "from": 2288,
+   "to": 2314,
    "words": [
     {
-     "t": 2291,
+     "t": 2288,
      "w": "esperan",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 2304,
+     "t": 2299,
      "w": "fuera",
-     "em": false
+     "style": "sans"
     },
+    {
+     "t": 2309,
+     "w": "de",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 2314,
+   "to": 2346,
+   "words": [
     {
      "t": 2314,
-     "w": "de",
-     "em": false
-    }
-   ]
-  },
-  {
-   "from": 2320,
-   "to": 2355,
-   "words": [
-    {
-     "t": 2320,
      "w": "la",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 2326,
-     "w": "pantalla.",
-     "em": false
+     "t": 2319,
+     "w": "pantalla",
+     "style": "sans"
     }
    ]
   },
   {
-   "from": 2447,
-   "to": 2471,
+   "from": 2450,
+   "to": 2474,
    "words": [
     {
-     "t": 2447,
-     "w": "Desconéctate,",
-     "em": true
+     "t": 2450,
+     "w": "Desconéctate",
+     "style": "shout"
     }
    ]
   },
   {
-   "from": 2471,
-   "to": 2509,
+   "from": 2474,
+   "to": 2511,
    "words": [
     {
-     "t": 2471,
+     "t": 2474,
      "w": "para",
-     "em": false
+     "style": "sans"
     },
     {
-     "t": 2480,
-     "w": "conectar.",
-     "em": true
+     "t": 2483,
+     "w": "conectar",
+     "style": "script"
     }
    ]
   }
