@@ -4,6 +4,8 @@ import { CampaignOverlay, CampaignPromo } from "./Campaign";
 import { EduRural } from "./EduRural";
 import { EDU } from "./eduData";
 import { HelloWorld } from "./HelloWorld";
+import { RedesJaula } from "./RedesJaula";
+import { RS } from "./rsData";
 import { Logo } from "./HelloWorld/Logo";
 import { Title } from "./HelloWorld/Title";
 
@@ -105,6 +107,14 @@ export const RemotionRoot: React.FC = () => {
         component={EduRural}
         durationInFrames={EDU.duration}
         fps={EDU.fps}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="RedesJaula"
+        component={RedesJaula}
+        durationInFrames={RS.duration}
+        fps={RS.fps}
         width={1080}
         height={1920}
       />
