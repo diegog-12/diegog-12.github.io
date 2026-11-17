@@ -19,13 +19,7 @@ import {
   useCurrentFrame,
 } from "remotion";
 import { CX } from "./cxData";
-import {
-  Eyes,
-  GlitchWords,
-  Notifs,
-  Student,
-  Timelapse,
-} from "./RedesJaula";
+import { Eyes, Student } from "./RedesJaula";
 
 // Problem (social media addiction) -> solution (Contexto, a phone-free cafe).
 const FPS = 30;
@@ -224,12 +218,12 @@ const PhoneTable: React.FC<{ local: number; dur: number }> = ({ local, dur }) =>
 };
 
 // "What if there was a place to disconnect?" A warm door opens in the dark.
-const Question: React.FC<{ local: number }> = ({ local }) => {
-  const open = interpolate(local, [20, 110], [0, 1], {
+const Question: React.FC<{ local: number; dur: number }> = ({ local, dur }) => {
+  const open = interpolate(local, [8, dur * 0.65], [0, 1], {
     ...clamp,
     easing: Easing.inOut(Easing.cubic),
   });
-  const flood = interpolate(local, [120, 175], [0, 1], clamp);
+  const flood = interpolate(local, [dur * 0.75, dur], [0, 1], clamp);
   return (
     <AbsoluteFill style={{ background: "#07090f" }}>
       <AbsoluteFill
@@ -618,7 +612,7 @@ const Cafe: React.FC<{ local: number; dur: number }> = ({ local, dur }) => {
 // Closing card: full lockup and the call to action.
 const End: React.FC<{ local: number }> = ({ local }) => {
   const a = pop(local, 0, 14);
-  const b = pop(local, 120, 14);
+  const b = pop(local, 60, 14);
   return (
     <AbsoluteFill style={{ background: PAPER, alignItems: "center" }}>
       <div
@@ -652,38 +646,182 @@ const End: React.FC<{ local: number }> = ({ local }) => {
   );
 };
 
+// What the symbol means: callouts on the person, the cup and the bubble.
+const Meaning: React.FC<{ local: number; start: number }> = ({ local, start }) => {
+  const a = pop(local, 0, 14);
+  const z = interpolate(local, [0, 330], [1.0, 1.06]);
+  const calls = [
+    { at: CX.marks["piensa"], label: "alguien que piensa", lx: 60, ly: 300, px: 474, py: 594 },
+    { at: CX.marks["café"], label: "su café en la mano", lx: 60, ly: 1150, px: 493, py: 845 },
+    { at: CX.marks["conversación"], label: "una conversación", lx: 560, ly: 260, px: 738, py: 518 },
+  ];
+  return (
+    <AbsoluteFill style={{ background: CREMA, transform: `scale(${z})` }}>
+      <AbsoluteFill
+        style={{
+          background: `radial-gradient(circle at 50% 40%, ${MIEL}44 0%, rgba(0,0,0,0) 60%)`,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          left: 160,
+          top: 380,
+          width: 760,
+          opacity: a,
+          transform: `scale(${0.9 + 0.1 * a})`,
+        }}
+      >
+        <Img src={staticFile("cx/simbolo.png")} style={{ width: "100%" }} />
+      </div>
+      <svg style={{ position: "absolute", inset: 0 }} width={1080} height={1920}>
+        {calls.map((c, i) => {
+          const p = pop(local, c.at - start, 15);
+          const ex = c.lx + 220;
+          const ey = c.ly + (c.ly < c.py ? 90 : 0);
+          return (
+            <g key={i} opacity={p}>
+              <line
+                x1={ex}
+                y1={ey}
+                x2={ex + (c.px - ex) * p}
+                y2={ey + (c.py - ey) * p}
+                stroke={CAFE}
+                strokeWidth={5}
+                strokeDasharray="14 10"
+              />
+              <circle cx={c.px} cy={c.py} r={16 * p} fill={CANELA} stroke={CREMA} strokeWidth={5} />
+            </g>
+          );
+        })}
+      </svg>
+      {calls.map((c, i) => {
+        const p = pop(local, c.at - start, 13);
+        return (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: c.lx,
+              top: c.ly,
+              width: 440,
+              height: 90,
+              borderRadius: 45,
+              background: i === 2 ? MIEL : CAFE,
+              color: i === 2 ? CAFE : CREMA,
+              fontFamily: SERIF,
+              fontWeight: 800,
+              fontSize: 42,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transform: `scale(${p})`,
+              opacity: p,
+              boxShadow: "0 10px 26px #0003",
+            }}
+          >
+            {c.label}
+          </div>
+        );
+      })}
+    </AbsoluteFill>
+  );
+};
+
+// The slogan, word by word: un dato, un sorbo, un buen rato.
+const Slogan: React.FC<{ local: number; start: number }> = ({ local, start }) => {
+  const rows = [
+    { at: CX.marks["dato"], text: "Un dato,", bg: CREMA, fg: CAFE, icon: "?" },
+    { at: CX.marks["sorbo"], text: "un sorbo", bg: MIEL, fg: CAFE, icon: "☕" },
+    { at: CX.marks["rato"], text: "y un buen rato", bg: CANELA, fg: CREMA, icon: "☺" },
+  ];
+  return (
+    <AbsoluteFill style={{ background: CAFE }}>
+      <AbsoluteFill
+        style={{
+          background: `radial-gradient(circle at 50% 35%, ${CANELA}66 0%, rgba(0,0,0,0) 60%)`,
+        }}
+      />
+      {rows.map((r, i) => {
+        const p = pop(local, r.at - start - 4, 12);
+        return (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: 90,
+              top: 230 + i * 320,
+              width: 900,
+              height: 250,
+              borderRadius: 40,
+              background: r.bg,
+              display: "flex",
+              alignItems: "center",
+              gap: 36,
+              padding: "0 50px",
+              boxSizing: "border-box",
+              transform: `translateX(${(1 - p) * (i % 2 ? 1 : -1) * 1100}px) rotate(${(i - 1) * 2}deg)`,
+              boxShadow: "0 16px 40px #0006",
+            }}
+          >
+            <div
+              style={{
+                width: 150,
+                height: 150,
+                borderRadius: 75,
+                background: r.fg,
+                color: r.bg,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: SERIF,
+                fontWeight: 800,
+                fontSize: 90,
+                flexShrink: 0,
+              }}
+            >
+              {r.icon}
+            </div>
+            <div
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 500,
+                fontSize: 92,
+                color: r.fg,
+                lineHeight: 1,
+              }}
+            >
+              {r.text}
+            </div>
+          </div>
+        );
+      })}
+    </AbsoluteFill>
+  );
+};
+
 // ----------------------------------------------------------- scene switcher
-const renderScene = (id: string, local: number, dur: number) => {
+const renderScene = (id: string, local: number, dur: number, start: number) => {
   switch (id) {
     case "eyes":
       return <Eyes />;
-    case "timelapse":
-      return <Timelapse local={local} dur={dur} />;
-    case "notifs":
-      return <Notifs local={local} dur={dur} />;
-    case "cage":
-      return (
-        <>
-          <Notifs
-            local={local + 270}
-            dur={dur}
-            cage={interpolate(local, [0, 60], [0, 1], clamp)}
-          />
-          <GlitchWords local={local - 75} />
-        </>
-      );
     case "table":
       return <PhoneTable local={local} dur={dur} />;
     case "question":
-      return <Question local={local} />;
+      return <Question local={local} dur={dur} />;
     case "reveal":
       return <Reveal local={local} />;
+    case "meaning":
+      return <Meaning local={local} start={start} />;
     case "box":
       return <PauseBox local={local} />;
     case "cup":
       return <CupFact local={local} />;
     case "cafe":
       return <Cafe local={local} dur={dur} />;
+    case "slogan":
+      return <Slogan local={local} start={start} />;
     default:
       return <End local={local} />;
   }
@@ -695,12 +833,12 @@ const sceneAt = (f: number): Scene =>
   CX.scenes[CX.scenes.length - 1];
 const draw = (s: Scene, f: number) => (
   <AbsoluteFill style={{ overflow: "hidden" }}>
-    {renderScene(s.id, f - s.from, s.to - s.from)}
+    {renderScene(s.id, f - s.from, s.to - s.from, s.from)}
   </AbsoluteFill>
 );
 
 // Whip pans between the solution scenes; glitch cuts in the problem part.
-const WHIPS = [sec(56), sec(63), sec(70), sec(81)];
+const WHIPS = [sec(28), sec(39), sec(47), sec(55.5), sec(65), sec(75)];
 const Scenes: React.FC = () => {
   const frame = useCurrentFrame();
   const at = WHIPS.find((w) => Math.abs(frame - w) < 8);
@@ -721,12 +859,12 @@ const Scenes: React.FC = () => {
   return draw(sceneAt(frame), frame);
 };
 
-const GLITCH_AT = [sec(7), sec(16), sec(25), sec(35), sec(42)];
+const GLITCH_AT = [sec(6), sec(13.5)];
 const Glitch: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const frame = useCurrentFrame();
   const near = GLITCH_AT.find((g) => Math.abs(frame - g) <= 6);
   const inCage =
-    frame > sec(25) && frame < sec(35) && random(`c${Math.floor(frame / 3)}`) > 0.86;
+    frame < sec(13) && random(`c${Math.floor(frame / 3)}`) > 0.93;
   if (near === undefined && !inCage) return <>{children}</>;
   const amt = near !== undefined ? 1 - Math.abs(frame - near) / 7 : 0.5;
   const r = (k: string) => (random(`${k}${frame}`) - 0.5) * 2;
@@ -772,17 +910,17 @@ const Grade: React.FC = () => {
   const frame = useCurrentFrame();
   const c = interpolateColors(
     frame,
-    [0, sec(6), sec(20), sec(42), sec(46), sec(90)],
+    [0, sec(3), sec(8), sec(13), sec(17), sec(90)],
     ["#ff9f43", "#2e86de", "#1e3799", "#1e3799", "#ffb142", "#ffb142"],
   );
-  const op = interpolate(frame, [sec(46), sec(49)], [0.45, 0.18], clamp);
+  const op = interpolate(frame, [sec(16), sec(19)], [0.45, 0.18], clamp);
   return (
     <>
       <AbsoluteFill style={{ background: c, mixBlendMode: "soft-light", opacity: op }} />
       <AbsoluteFill
         style={{
           background:
-            `radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,${frame < sec(47) ? 0.5 : 0.25}) 100%)`,
+            `radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,${frame < sec(17) ? 0.5 : 0.25}) 100%)`,
         }}
       />
     </>
@@ -802,7 +940,7 @@ const Captions: React.FC = () => {
   const ci = CX.captions.findIndex((c) => frame >= c.from && frame < c.to);
   if (ci < 0) return null;
   const cap = CX.captions[ci];
-  const solution = frame >= sec(48);
+  const solution = frame >= sec(18);
   const neonColor = solution
     ? ci % 2
       ? MIEL

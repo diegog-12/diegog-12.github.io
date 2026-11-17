@@ -1,1220 +1,1148 @@
-// Generated from the voice-over timings. Times are in frames (30 fps).
+// Generated from the voice-over word timings. Times are in frames (30 fps).
 export const CX = {
  "fps": 30,
  "duration": 2700,
  "voice": [
   {
    "src": "cx/voz0.wav",
-   "from": 30
+   "from": 18
   },
   {
    "src": "cx/voz1.wav",
-   "from": 225
+   "from": 195
   },
   {
    "src": "cx/voz2.wav",
-   "from": 495
+   "from": 426
   },
   {
    "src": "cx/voz3.wav",
-   "from": 774
+   "from": 570
   },
   {
    "src": "cx/voz4.wav",
-   "from": 1080
+   "from": 855
   },
   {
    "src": "cx/voz5.wav",
-   "from": 1275
+   "from": 1188
   },
   {
    "src": "cx/voz6.wav",
-   "from": 1485
+   "from": 1434
   },
   {
    "src": "cx/voz7.wav",
-   "from": 1695
+   "from": 1686
   },
   {
    "src": "cx/voz8.wav",
-   "from": 1905
+   "from": 1974
   },
   {
    "src": "cx/voz9.wav",
-   "from": 2109
-  },
-  {
-   "src": "cx/voz10.wav",
-   "from": 2265
-  },
-  {
-   "src": "cx/voz11.wav",
-   "from": 2430
-  },
-  {
-   "src": "cx/voz12.wav",
-   "from": 2556
+   "from": 2286
   }
  ],
  "captions": [
   {
-   "from": 36,
-   "to": 54,
+   "from": 21,
+   "to": 64,
    "words": [
+    {
+     "t": 21,
+     "w": "Seamos",
+     "style": "sans"
+    },
     {
      "t": 36,
-     "w": "Son",
-     "style": "sans"
-    },
-    {
-     "t": 42,
-     "w": "las",
-     "style": "sans"
-    },
-    {
-     "t": 48,
-     "w": "dos",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 54,
-   "to": 78,
-   "words": [
-    {
-     "t": 54,
-     "w": "de",
-     "style": "sans"
-    },
-    {
-     "t": 59,
-     "w": "la",
-     "style": "sans"
-    },
-    {
-     "t": 64,
-     "w": "mañana,",
+     "w": "sinceros:",
      "style": "sans"
     }
    ]
   },
   {
-   "from": 78,
-   "to": 120,
+   "from": 63,
+   "to": 91,
    "words": [
     {
-     "t": 78,
-     "w": "y",
+     "t": 63,
+     "w": "pasamos",
      "style": "sans"
     },
     {
-     "t": 81,
-     "w": "sigues",
+     "t": 79,
+     "w": "el",
      "style": "sans"
     },
+    {
+     "t": 83,
+     "w": "día",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 91,
+   "to": 139,
+   "words": [
     {
      "t": 91,
-     "w": "deslizando.",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 231,
-   "to": 257,
-   "words": [
-    {
-     "t": 231,
-     "w": "Un",
+     "w": "pegados",
      "style": "sans"
     },
     {
-     "t": 237,
-     "w": "video",
+     "t": 107,
+     "w": "al",
      "style": "sans"
     },
     {
-     "t": 246,
-     "w": "más,",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 257,
-   "to": 295,
-   "words": [
-    {
-     "t": 257,
-     "w": "una",
-     "style": "sans"
-    },
-    {
-     "t": 264,
-     "w": "notificación",
-     "style": "sans"
-    },
-    {
-     "t": 284,
-     "w": "más...",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 295,
-   "to": 323,
-   "words": [
-    {
-     "t": 295,
-     "w": "y",
-     "style": "sans"
-    },
-    {
-     "t": 299,
-     "w": "cuando",
-     "style": "sans"
-    },
-    {
-     "t": 310,
-     "w": "levantas",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 323,
-   "to": 343,
-   "words": [
-    {
-     "t": 323,
-     "w": "la",
-     "style": "sans"
-    },
-    {
-     "t": 329,
-     "w": "vista,",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 343,
-   "to": 369,
-   "words": [
-    {
-     "t": 343,
-     "w": "ya",
-     "style": "sans"
-    },
-    {
-     "t": 348,
-     "w": "pasaron",
-     "style": "sans"
-    },
-    {
-     "t": 361,
-     "w": "tres",
+     "t": 111,
+     "w": "celular.",
      "style": "shout"
     }
    ]
   },
   {
-   "from": 369,
-   "to": 393,
+   "from": 198,
+   "to": 247,
    "words": [
     {
-     "t": 369,
-     "w": "horas.",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 501,
-   "to": 533,
-   "words": [
-    {
-     "t": 501,
-     "w": "Pasamos",
+     "t": 198,
+     "w": "Salimos",
      "style": "sans"
     },
     {
-     "t": 513,
-     "w": "horas",
-     "style": "script"
-    },
-    {
-     "t": 523,
-     "w": "frente",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 533,
-   "to": 560,
-   "words": [
-    {
-     "t": 533,
-     "w": "a",
-     "style": "sans"
-    },
-    {
-     "t": 538,
-     "w": "la",
-     "style": "sans"
-    },
-    {
-     "t": 543,
-     "w": "pantalla,",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 560,
-   "to": 593,
-   "words": [
-    {
-     "t": 560,
-     "w": "rodeados",
-     "style": "sans"
-    },
-    {
-     "t": 574,
-     "w": "de",
-     "style": "sans"
-    },
-    {
-     "t": 579,
-     "w": "likes,",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 593,
-   "to": 615,
-   "words": [
-    {
-     "t": 593,
-     "w": "pero",
-     "style": "sans"
-    },
-    {
-     "t": 601,
-     "w": "cada",
-     "style": "sans"
-    },
-    {
-     "t": 609,
-     "w": "vez",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 615,
-   "to": 646,
-   "words": [
-    {
-     "t": 615,
-     "w": "más",
-     "style": "sans"
-    },
-    {
-     "t": 622,
-     "w": "solos.",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 780,
-   "to": 802,
-   "words": [
-    {
-     "t": 780,
-     "w": "Las",
-     "style": "sans"
-    },
-    {
-     "t": 787,
-     "w": "redes",
-     "style": "sans"
-    },
-    {
-     "t": 797,
-     "w": "se",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 802,
-   "to": 836,
-   "words": [
-    {
-     "t": 802,
-     "w": "vuelven",
-     "style": "sans"
-    },
-    {
-     "t": 815,
-     "w": "una",
-     "style": "sans"
-    },
-    {
-     "t": 822,
-     "w": "jaula:",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 836,
-   "to": 860,
-   "words": [
-    {
-     "t": 836,
-     "w": "menos",
-     "style": "sans"
-    },
-    {
-     "t": 846,
-     "w": "sueño,",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 860,
-   "to": 894,
-   "words": [
-    {
-     "t": 860,
-     "w": "menos",
-     "style": "sans"
-    },
-    {
-     "t": 869,
-     "w": "concentración",
-     "style": "sans"
-    },
-    {
-     "t": 890,
-     "w": "y",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 894,
-   "to": 930,
-   "words": [
-    {
-     "t": 894,
-     "w": "más",
-     "style": "sans"
-    },
-    {
-     "t": 901,
-     "w": "ansiedad.",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 1086,
-   "to": 1104,
-   "words": [
-    {
-     "t": 1086,
-     "w": "Hasta",
-     "style": "sans"
-    },
-    {
-     "t": 1095,
-     "w": "en",
-     "style": "sans"
-    },
-    {
-     "t": 1099,
-     "w": "la",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 1104,
-   "to": 1131,
-   "words": [
-    {
-     "t": 1104,
-     "w": "mesa",
-     "style": "sans"
-    },
-    {
-     "t": 1111,
+     "t": 217,
      "w": "con",
      "style": "sans"
     },
     {
-     "t": 1118,
+     "t": 223,
      "w": "amigos,",
      "style": "sans"
     }
    ]
   },
   {
-   "from": 1131,
-   "to": 1151,
+   "from": 247,
+   "to": 279,
    "words": [
     {
-     "t": 1131,
+     "t": 247,
+     "w": "y",
+     "style": "sans"
+    },
+    {
+     "t": 251,
+     "w": "aun",
+     "style": "sans"
+    },
+    {
+     "t": 259,
+     "w": "así,",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 279,
+   "to": 310,
+   "words": [
+    {
+     "t": 279,
      "w": "cada",
      "style": "sans"
     },
     {
-     "t": 1138,
+     "t": 288,
      "w": "uno",
      "style": "sans"
     },
     {
-     "t": 1144,
-     "w": "mira",
+     "t": 296,
+     "w": "termina",
      "style": "sans"
     }
    ]
   },
   {
-   "from": 1151,
-   "to": 1181,
+   "from": 310,
+   "to": 356,
    "words": [
     {
-     "t": 1151,
+     "t": 310,
+     "w": "mirando",
+     "style": "sans"
+    },
+    {
+     "t": 323,
      "w": "su",
      "style": "sans"
     },
     {
-     "t": 1156,
-     "w": "celular.",
-     "style": "script"
+     "t": 328,
+     "w": "pantalla.",
+     "style": "shout"
     }
    ]
   },
   {
-   "from": 1281,
-   "to": 1304,
+   "from": 429,
+   "to": 453,
    "words": [
     {
-     "t": 1281,
-     "w": "¿Y",
+     "t": 429,
+     "w": "Por",
      "style": "sans"
     },
     {
-     "t": 1285,
-     "w": "si",
+     "t": 435,
+     "w": "eso",
      "style": "sans"
     },
     {
-     "t": 1290,
-     "w": "existiera",
+     "t": 442,
+     "w": "nace",
      "style": "sans"
     }
    ]
   },
   {
-   "from": 1304,
-   "to": 1325,
+   "from": 453,
+   "to": 496,
    "words": [
     {
-     "t": 1304,
+     "t": 453,
      "w": "un",
      "style": "sans"
     },
     {
-     "t": 1308,
+     "t": 457,
      "w": "lugar",
      "style": "sans"
     },
     {
-     "t": 1317,
-     "w": "para",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 1325,
-   "to": 1372,
-   "words": [
-    {
-     "t": 1325,
-     "w": "desconectarte",
-     "style": "sans"
-    },
-    {
-     "t": 1343,
-     "w": "de",
-     "style": "sans"
-    },
-    {
-     "t": 1348,
-     "w": "verdad?",
+     "t": 467,
+     "w": "diferente.",
      "style": "script"
     }
    ]
   },
   {
-   "from": 1492,
-   "to": 1535,
+   "from": 573,
+   "to": 627,
    "words": [
     {
-     "t": 1492,
+     "t": 573,
      "w": "Te",
      "style": "sans"
     },
     {
-     "t": 1497,
+     "t": 578,
      "w": "presentamos",
      "style": "sans"
     },
     {
-     "t": 1516,
-     "w": "Contexto,",
+     "t": 598,
+     "w": "Contexto:",
      "style": "script"
     }
    ]
   },
   {
-   "from": 1535,
-   "to": 1572,
+   "from": 629,
+   "to": 665,
    "words": [
     {
-     "t": 1535,
+     "t": 629,
      "w": "una",
      "style": "sans"
     },
     {
-     "t": 1543,
+     "t": 635,
      "w": "cafetería",
      "style": "sans"
     },
     {
-     "t": 1559,
-     "w": "pensada",
+     "t": 656,
+     "w": "hecha",
      "style": "sans"
     }
    ]
   },
   {
-   "from": 1572,
-   "to": 1616,
+   "from": 665,
+   "to": 701,
    "words": [
     {
-     "t": 1572,
+     "t": 665,
      "w": "para",
      "style": "sans"
     },
     {
-     "t": 1580,
-     "w": "los",
+     "t": 671,
+     "w": "desconectarte",
      "style": "sans"
     },
     {
-     "t": 1588,
-     "w": "jóvenes.",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 1701,
-   "to": 1721,
-   "words": [
-    {
-     "t": 1701,
-     "w": "Al",
-     "style": "sans"
-    },
-    {
-     "t": 1706,
-     "w": "entrar,",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 1721,
-   "to": 1748,
-   "words": [
-    {
-     "t": 1721,
-     "w": "dejas",
-     "style": "sans"
-    },
-    {
-     "t": 1730,
-     "w": "tu",
-     "style": "sans"
-    },
-    {
-     "t": 1736,
-     "w": "celular",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 1748,
-   "to": 1766,
-   "words": [
-    {
-     "t": 1748,
-     "w": "en",
-     "style": "sans"
-    },
-    {
-     "t": 1753,
-     "w": "la",
-     "style": "sans"
-    },
-    {
-     "t": 1758,
-     "w": "caja",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 1766,
-   "to": 1785,
-   "words": [
-    {
-     "t": 1766,
-     "w": "de",
-     "style": "sans"
-    },
-    {
-     "t": 1772,
-     "w": "pausa,",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 1785,
-   "to": 1813,
-   "words": [
-    {
-     "t": 1785,
-     "w": "y",
-     "style": "sans"
-    },
-    {
-     "t": 1789,
-     "w": "la",
-     "style": "sans"
-    },
-    {
-     "t": 1794,
-     "w": "conversación",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 1813,
-   "to": 1840,
-   "words": [
-    {
-     "t": 1813,
-     "w": "empieza.",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 1911,
-   "to": 1936,
-   "words": [
-    {
-     "t": 1911,
-     "w": "Cada",
-     "style": "sans"
-    },
-    {
-     "t": 1920,
-     "w": "taza",
-     "style": "sans"
-    },
-    {
-     "t": 1928,
-     "w": "trae",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 1936,
-   "to": 1967,
-   "words": [
-    {
-     "t": 1936,
-     "w": "un",
-     "style": "sans"
-    },
-    {
-     "t": 1942,
-     "w": "dato",
-     "style": "script"
-    },
-    {
-     "t": 1950,
-     "w": "curioso,",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 1967,
-   "to": 1992,
-   "words": [
-    {
-     "t": 1967,
-     "w": "para",
-     "style": "sans"
-    },
-    {
-     "t": 1975,
-     "w": "romper",
-     "style": "sans"
-    },
-    {
-     "t": 1986,
-     "w": "el",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 1992,
-   "to": 2018,
-   "words": [
-    {
-     "t": 1992,
-     "w": "hielo",
-     "style": "sans"
-    },
-    {
-     "t": 2002,
-     "w": "y",
-     "style": "sans"
-    },
-    {
-     "t": 2006,
-     "w": "conocer",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 2018,
-   "to": 2052,
-   "words": [
-    {
-     "t": 2018,
-     "w": "gente",
-     "style": "sans"
-    },
-    {
-     "t": 2028,
-     "w": "nueva.",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 2115,
-   "to": 2139,
-   "words": [
-    {
-     "t": 2115,
-     "w": "Aquí",
-     "style": "sans"
-    },
-    {
-     "t": 2123,
-     "w": "vuelves",
-     "style": "sans"
-    },
-    {
-     "t": 2135,
-     "w": "a",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 2139,
-   "to": 2157,
-   "words": [
-    {
-     "t": 2139,
-     "w": "conversar,",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 2157,
-   "to": 2172,
-   "words": [
-    {
-     "t": 2157,
-     "w": "a",
-     "style": "sans"
-    },
-    {
-     "t": 2161,
-     "w": "reír",
-     "style": "sans"
-    },
-    {
-     "t": 2168,
-     "w": "y",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 2172,
-   "to": 2205,
-   "words": [
-    {
-     "t": 2172,
-     "w": "a",
-     "style": "sans"
-    },
-    {
-     "t": 2176,
-     "w": "conocer",
-     "style": "sans"
-    },
-    {
-     "t": 2188,
-     "w": "personas,",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 2205,
-   "to": 2239,
-   "words": [
-    {
-     "t": 2205,
-     "w": "cara",
-     "style": "script"
-    },
-    {
-     "t": 2213,
-     "w": "a",
-     "style": "sans"
-    },
-    {
-     "t": 2216,
-     "w": "cara.",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 2272,
-   "to": 2300,
-   "words": [
-    {
-     "t": 2272,
-     "w": "Juegos",
-     "style": "sans"
-    },
-    {
-     "t": 2283,
-     "w": "de",
-     "style": "sans"
-    },
-    {
-     "t": 2288,
-     "w": "mesa,",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 2300,
-   "to": 2325,
-   "words": [
-    {
-     "t": 2300,
-     "w": "buena",
-     "style": "sans"
-    },
-    {
-     "t": 2310,
-     "w": "música",
-     "style": "sans"
-    },
-    {
-     "t": 2321,
-     "w": "y",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 2325,
-   "to": 2343,
-   "words": [
-    {
-     "t": 2325,
-     "w": "un",
-     "style": "sans"
-    },
-    {
-     "t": 2330,
-     "w": "café",
-     "style": "sans"
-    },
-    {
-     "t": 2338,
+     "t": 697,
      "w": "de",
      "style": "sans"
     }
    ]
   },
   {
-   "from": 2343,
-   "to": 2358,
+   "from": 701,
+   "to": 727,
    "words": [
     {
-     "t": 2343,
-     "w": "verdad.",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 2358,
-   "to": 2401,
-   "words": [
-    {
-     "t": 2358,
-     "w": "Sin",
-     "style": "shout"
+     "t": 701,
+     "w": "las",
+     "style": "sans"
     },
     {
-     "t": 2365,
-     "w": "notificaciones.",
+     "t": 707,
+     "w": "redes,",
      "style": "sans"
     }
    ]
   },
   {
-   "from": 2436,
-   "to": 2454,
+   "from": 727,
+   "to": 752,
    "words": [
     {
-     "t": 2436,
-     "w": "Contexto.",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 2454,
-   "to": 2471,
-   "words": [
-    {
-     "t": 2454,
-     "w": "Un",
-     "style": "sans"
-    },
-    {
-     "t": 2459,
-     "w": "dato,",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 2471,
-   "to": 2490,
-   "words": [
-    {
-     "t": 2471,
-     "w": "un",
-     "style": "sans"
-    },
-    {
-     "t": 2477,
-     "w": "sorbo",
-     "style": "sans"
-    },
-    {
-     "t": 2486,
-     "w": "y",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 2490,
-   "to": 2527,
-   "words": [
-    {
-     "t": 2490,
-     "w": "un",
-     "style": "sans"
-    },
-    {
-     "t": 2496,
-     "w": "buen",
-     "style": "sans"
-    },
-    {
-     "t": 2504,
-     "w": "rato.",
-     "style": "script"
-    }
-   ]
-  },
-  {
-   "from": 2562,
-   "to": 2592,
-   "words": [
-    {
-     "t": 2562,
-     "w": "Desconéctate",
-     "style": "sans"
-    },
-    {
-     "t": 2581,
-     "w": "de",
-     "style": "sans"
-    },
-    {
-     "t": 2587,
-     "w": "la",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 2592,
-   "to": 2610,
-   "words": [
-    {
-     "t": 2592,
-     "w": "pantalla,",
-     "style": "sans"
-    }
-   ]
-  },
-  {
-   "from": 2610,
-   "to": 2635,
-   "words": [
-    {
-     "t": 2610,
+     "t": 727,
      "w": "y",
      "style": "sans"
     },
     {
-     "t": 2614,
-     "w": "conéctate",
+     "t": 730,
+     "w": "conectar",
      "style": "sans"
     },
     {
-     "t": 2629,
+     "t": 747,
      "w": "con",
      "style": "sans"
     }
    ]
   },
   {
-   "from": 2635,
-   "to": 2670,
+   "from": 752,
+   "to": 788,
    "words": [
     {
-     "t": 2635,
+     "t": 752,
      "w": "las",
      "style": "sans"
     },
     {
-     "t": 2642,
+     "t": 757,
      "w": "personas.",
+     "style": "script"
+    }
+   ]
+  },
+  {
+   "from": 858,
+   "to": 889,
+   "words": [
+    {
+     "t": 858,
+     "w": "Nuestro",
+     "style": "sans"
+    },
+    {
+     "t": 870,
+     "w": "símbolo",
+     "style": "script"
+    },
+    {
+     "t": 884,
+     "w": "es",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 889,
+   "to": 926,
+   "words": [
+    {
+     "t": 889,
+     "w": "alguien",
+     "style": "sans"
+    },
+    {
+     "t": 899,
+     "w": "que",
+     "style": "sans"
+    },
+    {
+     "t": 903,
+     "w": "piensa,",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 926,
+   "to": 946,
+   "words": [
+    {
+     "t": 926,
+     "w": "con",
+     "style": "sans"
+    },
+    {
+     "t": 932,
+     "w": "su",
+     "style": "sans"
+    },
+    {
+     "t": 937,
+     "w": "café",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 946,
+   "to": 966,
+   "words": [
+    {
+     "t": 946,
+     "w": "en",
+     "style": "sans"
+    },
+    {
+     "t": 949,
+     "w": "la",
+     "style": "sans"
+    },
+    {
+     "t": 953,
+     "w": "mano",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 966,
+   "to": 1001,
+   "words": [
+    {
+     "t": 966,
+     "w": "y",
+     "style": "sans"
+    },
+    {
+     "t": 971,
+     "w": "una",
+     "style": "sans"
+    },
+    {
+     "t": 977,
+     "w": "conversación",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1001,
+   "to": 1034,
+   "words": [
+    {
+     "t": 1001,
+     "w": "por",
+     "style": "sans"
+    },
+    {
+     "t": 1007,
+     "w": "empezar.",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1053,
+   "to": 1082,
+   "words": [
+    {
+     "t": 1053,
+     "w": "Así",
+     "style": "sans"
+    },
+    {
+     "t": 1064,
+     "w": "queremos",
+     "style": "sans"
+    },
+    {
+     "t": 1078,
+     "w": "que",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1082,
+   "to": 1121,
+   "words": [
+    {
+     "t": 1082,
+     "w": "te",
+     "style": "sans"
+    },
+    {
+     "t": 1087,
+     "w": "sientas",
+     "style": "sans"
+    },
+    {
+     "t": 1102,
+     "w": "aquí.",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1191,
+   "to": 1219,
+   "words": [
+    {
+     "t": 1191,
+     "w": "Al",
+     "style": "sans"
+    },
+    {
+     "t": 1198,
+     "w": "llegar,",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1219,
+   "to": 1249,
+   "words": [
+    {
+     "t": 1219,
+     "w": "dejas",
+     "style": "sans"
+    },
+    {
+     "t": 1231,
+     "w": "tu",
+     "style": "sans"
+    },
+    {
+     "t": 1234,
+     "w": "celular",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1249,
+   "to": 1266,
+   "words": [
+    {
+     "t": 1249,
+     "w": "en",
+     "style": "sans"
+    },
+    {
+     "t": 1253,
+     "w": "la",
+     "style": "sans"
+    },
+    {
+     "t": 1256,
+     "w": "caja",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1266,
+   "to": 1294,
+   "words": [
+    {
+     "t": 1266,
+     "w": "de",
+     "style": "sans"
+    },
+    {
+     "t": 1270,
+     "w": "pausa,",
+     "style": "script"
+    }
+   ]
+  },
+  {
+   "from": 1294,
+   "to": 1316,
+   "words": [
+    {
+     "t": 1294,
+     "w": "y",
+     "style": "sans"
+    },
+    {
+     "t": 1298,
+     "w": "te",
+     "style": "sans"
+    },
+    {
+     "t": 1302,
+     "w": "olvidas",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1316,
+   "to": 1367,
+   "words": [
+    {
+     "t": 1316,
+     "w": "de",
+     "style": "sans"
+    },
+    {
+     "t": 1319,
+     "w": "las",
+     "style": "sans"
+    },
+    {
+     "t": 1324,
+     "w": "notificaciones.",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1437,
+   "to": 1465,
+   "words": [
+    {
+     "t": 1437,
+     "w": "Cada",
+     "style": "sans"
+    },
+    {
+     "t": 1446,
+     "w": "taza",
+     "style": "sans"
+    },
+    {
+     "t": 1455,
+     "w": "viene",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1465,
+   "to": 1485,
+   "words": [
+    {
+     "t": 1465,
+     "w": "con",
+     "style": "sans"
+    },
+    {
+     "t": 1472,
+     "w": "un",
+     "style": "sans"
+    },
+    {
+     "t": 1477,
+     "w": "dato",
+     "style": "script"
+    }
+   ]
+  },
+  {
+   "from": 1485,
+   "to": 1510,
+   "words": [
+    {
+     "t": 1485,
+     "w": "curioso:",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1510,
+   "to": 1550,
+   "words": [
+    {
+     "t": 1510,
+     "w": "el",
+     "style": "sans"
+    },
+    {
+     "t": 1516,
+     "w": "pretexto",
+     "style": "sans"
+    },
+    {
+     "t": 1533,
+     "w": "perfecto",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1550,
+   "to": 1576,
+   "words": [
+    {
+     "t": 1550,
+     "w": "para",
+     "style": "sans"
+    },
+    {
+     "t": 1556,
+     "w": "empezar",
+     "style": "sans"
+    },
+    {
+     "t": 1571,
+     "w": "una",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1576,
+   "to": 1610,
+   "words": [
+    {
+     "t": 1576,
+     "w": "buena",
+     "style": "sans"
+    },
+    {
+     "t": 1585,
+     "w": "charla.",
+     "style": "script"
+    }
+   ]
+  },
+  {
+   "from": 1689,
+   "to": 1711,
+   "words": [
+    {
+     "t": 1689,
+     "w": "Hay",
+     "style": "sans"
+    },
+    {
+     "t": 1696,
+     "w": "juegos",
+     "style": "sans"
+    },
+    {
+     "t": 1708,
+     "w": "de",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1711,
+   "to": 1733,
+   "words": [
+    {
+     "t": 1711,
+     "w": "mesa,",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1733,
+   "to": 1765,
+   "words": [
+    {
+     "t": 1733,
+     "w": "buena",
+     "style": "sans"
+    },
+    {
+     "t": 1739,
+     "w": "música,",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1765,
+   "to": 1783,
+   "words": [
+    {
+     "t": 1765,
+     "w": "y",
+     "style": "sans"
+    },
+    {
+     "t": 1769,
+     "w": "un",
+     "style": "sans"
+    },
+    {
+     "t": 1773,
+     "w": "café",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1783,
+   "to": 1829,
+   "words": [
+    {
+     "t": 1783,
+     "w": "preparado",
+     "style": "sans"
+    },
+    {
+     "t": 1800,
+     "w": "con",
+     "style": "sans"
+    },
+    {
+     "t": 1805,
+     "w": "cariño,",
+     "style": "script"
+    }
+   ]
+  },
+  {
+   "from": 1829,
+   "to": 1862,
+   "words": [
+    {
+     "t": 1829,
+     "w": "para",
+     "style": "sans"
+    },
+    {
+     "t": 1835,
+     "w": "compartir",
+     "style": "sans"
+    },
+    {
+     "t": 1854,
+     "w": "sin",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1862,
+   "to": 1884,
+   "words": [
+    {
+     "t": 1862,
+     "w": "prisa.",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 1977,
+   "to": 2021,
+   "words": [
+    {
+     "t": 1977,
+     "w": "Porque",
+     "style": "sans"
+    },
+    {
+     "t": 1987,
+     "w": "en",
+     "style": "sans"
+    },
+    {
+     "t": 1990,
+     "w": "Contexto,",
+     "style": "script"
+    }
+   ]
+  },
+  {
+   "from": 2021,
+   "to": 2048,
+   "words": [
+    {
+     "t": 2021,
+     "w": "todo",
+     "style": "sans"
+    },
+    {
+     "t": 2028,
+     "w": "empieza",
+     "style": "sans"
+    },
+    {
+     "t": 2042,
+     "w": "con",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 2048,
+   "to": 2074,
+   "words": [
+    {
+     "t": 2048,
+     "w": "un",
+     "style": "sans"
+    },
+    {
+     "t": 2053,
+     "w": "dato,",
+     "style": "script"
+    }
+   ]
+  },
+  {
+   "from": 2074,
+   "to": 2095,
+   "words": [
+    {
+     "t": 2074,
+     "w": "sigue",
+     "style": "sans"
+    },
+    {
+     "t": 2084,
+     "w": "con",
+     "style": "sans"
+    },
+    {
+     "t": 2091,
+     "w": "un",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 2095,
+   "to": 2118,
+   "words": [
+    {
+     "t": 2095,
+     "w": "sorbo,",
+     "style": "script"
+    }
+   ]
+  },
+  {
+   "from": 2118,
+   "to": 2142,
+   "words": [
+    {
+     "t": 2118,
+     "w": "y",
+     "style": "sans"
+    },
+    {
+     "t": 2122,
+     "w": "termina",
+     "style": "sans"
+    },
+    {
+     "t": 2138,
+     "w": "en",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 2142,
+   "to": 2175,
+   "words": [
+    {
+     "t": 2142,
+     "w": "un",
+     "style": "sans"
+    },
+    {
+     "t": 2147,
+     "w": "buen",
+     "style": "sans"
+    },
+    {
+     "t": 2154,
+     "w": "rato.",
+     "style": "script"
+    }
+   ]
+  },
+  {
+   "from": 2289,
+   "to": 2321,
+   "words": [
+    {
+     "t": 2289,
+     "w": "Contexto.",
+     "style": "script"
+    }
+   ]
+  },
+  {
+   "from": 2340,
+   "to": 2373,
+   "words": [
+    {
+     "t": 2340,
+     "w": "Desconéctate",
+     "style": "sans"
+    },
+    {
+     "t": 2366,
+     "w": "de",
+     "style": "sans"
+    },
+    {
+     "t": 2370,
+     "w": "la",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 2373,
+   "to": 2401,
+   "words": [
+    {
+     "t": 2373,
+     "w": "pantalla,",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 2401,
+   "to": 2430,
+   "words": [
+    {
+     "t": 2401,
+     "w": "y",
+     "style": "sans"
+    },
+    {
+     "t": 2404,
+     "w": "conéctate",
+     "style": "sans"
+    },
+    {
+     "t": 2425,
+     "w": "con",
+     "style": "sans"
+    }
+   ]
+  },
+  {
+   "from": 2430,
+   "to": 2466,
+   "words": [
+    {
+     "t": 2430,
+     "w": "las",
+     "style": "sans"
+    },
+    {
+     "t": 2435,
+     "w": "personas.",
+     "style": "script"
+    }
+   ]
+  },
+  {
+   "from": 2485,
+   "to": 2524,
+   "words": [
+    {
+     "t": 2485,
+     "w": "¡Te",
+     "style": "sans"
+    },
+    {
+     "t": 2490,
+     "w": "esperamos!",
      "style": "script"
     }
    ]
   }
  ],
+ "marks": {
+  "piensa": 903,
+  "café": 937,
+  "conversación": 977,
+  "dato": 2053,
+  "sorbo": 2095,
+  "rato": 2154
+ },
  "scenes": [
   {
    "id": "eyes",
    "from": 0,
-   "to": 210
-  },
-  {
-   "id": "timelapse",
-   "from": 210,
-   "to": 480
-  },
-  {
-   "id": "notifs",
-   "from": 480,
-   "to": 750
-  },
-  {
-   "id": "cage",
-   "from": 750,
-   "to": 1050
+   "to": 180
   },
   {
    "id": "table",
-   "from": 1050,
-   "to": 1260
+   "from": 180,
+   "to": 405
   },
   {
    "id": "question",
-   "from": 1260,
-   "to": 1440
+   "from": 405,
+   "to": 540
   },
   {
    "id": "reveal",
-   "from": 1440,
-   "to": 1680
+   "from": 540,
+   "to": 840
+  },
+  {
+   "id": "meaning",
+   "from": 840,
+   "to": 1170
   },
   {
    "id": "box",
-   "from": 1680,
-   "to": 1890
+   "from": 1170,
+   "to": 1410
   },
   {
    "id": "cup",
-   "from": 1890,
-   "to": 2100
+   "from": 1410,
+   "to": 1665
   },
   {
    "id": "cafe",
-   "from": 2100,
-   "to": 2430
+   "from": 1665,
+   "to": 1950
+  },
+  {
+   "id": "slogan",
+   "from": 1950,
+   "to": 2250
   },
   {
    "id": "end",
-   "from": 2430,
+   "from": 2250,
    "to": 2700
   }
  ]
