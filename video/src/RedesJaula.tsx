@@ -29,7 +29,7 @@ const sec = (s: number) => s * FPS;
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 // ---------------------------------------------------------------- character
-const Student: React.FC<{
+export const Student: React.FC<{
   glow?: number; // blue phone light on the face 0..1
   phone?: boolean;
   screenOn?: number; // 0..1
@@ -210,9 +210,9 @@ const Student: React.FC<{
 };
 
 // ------------------------------------------------------------- notifications
-const ICONS = ["heart", "chat", "bell", "play", "like", "plus"] as const;
+export const ICONS = ["heart", "chat", "bell", "play", "like", "plus"] as const;
 type IconKind = (typeof ICONS)[number];
-const Icon: React.FC<{ kind: IconKind; size: number; badge?: string }> = ({
+export const Icon: React.FC<{ kind: IconKind; size: number; badge?: string }> = ({
   kind,
   size,
   badge,
@@ -308,7 +308,7 @@ const sky = (p: number) =>
     ],
   );
 
-const Window: React.FC<{
+export const Window: React.FC<{
   phase: number;
   x: number;
   y: number;
@@ -385,7 +385,7 @@ const Window: React.FC<{
   );
 };
 
-const Clock: React.FC<{ speed: number; x: number; y: number }> = ({
+export const Clock: React.FC<{ speed: number; x: number; y: number }> = ({
   speed,
   x,
   y,
@@ -430,7 +430,7 @@ const Clock: React.FC<{ speed: number; x: number; y: number }> = ({
   );
 };
 
-const Eyes: React.FC = () => {
+export const Eyes: React.FC = () => {
   const frame = useCurrentFrame();
   const z = interpolate(frame, [0, sec(7)], [1.0, 1.25]);
   const blink = [60, 150].some((b) => frame > b && frame < b + 6) ? 1 : 0.42;
@@ -583,7 +583,7 @@ const Room: React.FC<{ local: number; dur: number }> = ({ local, dur }) => {
   );
 };
 
-const Timelapse: React.FC<{ local: number; dur: number }> = ({
+export const Timelapse: React.FC<{ local: number; dur: number }> = ({
   local,
   dur,
 }) => {
@@ -625,7 +625,7 @@ const Timelapse: React.FC<{ local: number; dur: number }> = ({
   );
 };
 
-const Notifs: React.FC<{ local: number; dur: number; cage?: number }> = ({
+export const Notifs: React.FC<{ local: number; dur: number; cage?: number }> = ({
   local,
   dur,
   cage = 0,
@@ -715,7 +715,7 @@ const Notifs: React.FC<{ local: number; dur: number; cage?: number }> = ({
   );
 };
 
-const GlitchWords: React.FC<{ local: number }> = ({ local }) => {
+export const GlitchWords: React.FC<{ local: number }> = ({ local }) => {
   const words = ["MENOS SUEÑO", "MENOS CONCENTRACIÓN", "MÁS ANSIEDAD"];
   const idx = Math.min(2, Math.floor(local / 40));
   if (local < 0 || local > 125) return null;
