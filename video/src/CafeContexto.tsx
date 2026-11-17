@@ -39,6 +39,144 @@ const BODY = "'DM Sans', sans-serif";
 const pop = (f: number, delay = 0, damping = 12) =>
   spring({ frame: f - delay, fps: FPS, config: { damping } });
 
+// Beat of the hopeful music (108 bpm from 13.5 s): 1 on the beat, decays fast.
+const BEAT0 = 13.5;
+const beat = (f: number) => {
+  const t = f / FPS - BEAT0;
+  if (t < 0) return 0;
+  const ph = (t / (60 / 108)) % 1;
+  return Math.exp(-ph * 7);
+};
+
+// Sticker labels that pop in, wobble and pop out (TikTok style).
+const STICKERS: {
+  from: number;
+  to: number;
+  text: string;
+  x: number;
+  y: number;
+  rot: number;
+  bg: string;
+  fg: string;
+}[] = [
+  { from: sec(8.6), to: sec(13.3), text: "3 amigos, 0 conversación", x: 120, y: 300, rot: -5, bg: "#ff2d3d", fg: "white" },
+  { from: sec(41.5), to: sec(46.7), text: "modo pausa: ON", x: 300, y: 180, rot: 4, bg: MIEL, fg: CAFE },
+  { from: sec(50.5), to: sec(55.2), text: "rompe el hielo", x: 560, y: 1080, rot: -6, bg: CAFE, fg: CREMA },
+  { from: sec(56.3), to: sec(64.7), text: "entre clases", x: 70, y: 330, rot: -6, bg: CREMA, fg: CAFE },
+  { from: sec(57.3), to: sec(64.7), text: "después del parcial", x: 480, y: 250, rot: 5, bg: MIEL, fg: CAFE },
+  { from: sec(58.3), to: sec(64.7), text: "con tu grupo de estudio", x: 210, y: 700, rot: -2, bg: CAFE, fg: CREMA },
+  { from: sec(79.5), to: sec(90), text: "pensado para universitarios", x: 140, y: 140, rot: -3, bg: CAFE, fg: CREMA },
+];
+const Stickers: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <>
+      {STICKERS.map((st, i) => {
+        if (frame < st.from || frame >= st.to) return null;
+        const inn = pop(frame, st.from, 9);
+        const out = interpolate(frame, [st.to - 8, st.to], [1, 0], clamp);
+        const wob = Math.sin((frame - st.from) / 6 + i) * 3;
+        return (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: st.x,
+              top: st.y,
+              padding: "18px 34px",
+              borderRadius: 22,
+              background: st.bg,
+              color: st.fg,
+              fontFamily: BODY,
+              fontWeight: 700,
+              fontSize: 46,
+              border: `6px solid ${st.fg}`,
+              boxShadow: "8px 10px 0 #00000055",
+              transform: `scale(${inn * out * (1 + 0.05 * beat(frame))}) rotate(${st.rot + wob}deg)`,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {st.text}
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+// Coffee beans and sparks drifting over the brand scenes.
+const Particles: React.FC = () => {
+  const frame = useCurrentFrame();
+  const vis = interpolate(frame, [sec(18), sec(19.5)], [0, 1], clamp);
+  if (vis <= 0) return null;
+  return (
+    <AbsoluteFill style={{ opacity: vis, pointerEvents: "none" }}>
+      {Array.from({ length: 16 }).map((_, i) => {
+        const speed = 1.2 + random(`ps${i}`) * 2.2;
+        const y = 1980 - ((frame * speed + random(`py${i}`) * 2000) % 2100);
+        const x = random(`px${i}`) * 1000 + Math.sin(frame / 25 + i) * 40;
+        const rot = frame * (random(`pr${i}`) - 0.5) * 6;
+        const size = 26 + random(`pz${i}`) * 30;
+        const bean = i % 3 !== 0;
+        return (
+          <svg
+            key={i}
+            width={size}
+            height={size}
+            viewBox="0 0 40 40"
+            style={{
+              position: "absolute",
+              left: x,
+              top: y,
+              transform: `rotate(${rot}deg)`,
+              opacity: 0.55,
+            }}
+          >
+            {bean ? (
+              <>
+                <ellipse cx={20} cy={20} rx={12} ry={17} fill={CAFE} />
+                <path d="M20 4 q-6 16 0 32" stroke={CANELA} strokeWidth={3} fill="none" />
+              </>
+            ) : (
+              <path d="M20 2 L24 16 L38 20 L24 24 L20 38 L16 24 L2 20 L16 16 Z" fill={MIEL} />
+            )}
+          </svg>
+        );
+      })}
+    </AbsoluteFill>
+  );
+};
+
+// Full-screen punch words that slam in on key moments.
+const PUNCH: { at: number; dur: number; text: string; color: string }[] = [
+  { at: sec(16.2), dur: 40, text: "DIFERENTE", color: MIEL },
+];
+const Punch: React.FC = () => {
+  const frame = useCurrentFrame();
+  const pw = PUNCH.find((x) => frame >= x.at && frame < x.at + x.dur);
+  if (!pw) return null;
+  const l = frame - pw.at;
+  const sIn = interpolate(l, [0, 6], [2.4, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
+  const o = interpolate(l, [0, 3, pw.dur - 6, pw.dur], [0, 1, 1, 0], clamp);
+  return (
+    <AbsoluteFill style={{ justifyContent: "center", alignItems: "center", top: -250 }}>
+      <div
+        style={{
+          fontFamily: "Anton, sans-serif",
+          fontSize: 210,
+          color: pw.color,
+          opacity: o,
+          transform: `scale(${sIn}) rotate(-4deg)`,
+          textShadow: `0 0 30px ${CANELA}, 10px 12px 0 ${CAFE}`,
+          letterSpacing: 4,
+        }}
+      >
+        {pw.text}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 // ------------------------------------------------------------------ helpers
 const Bubble: React.FC<{ x: number; y: number; s: number; flip?: boolean }> = ({
   x,
@@ -154,6 +292,7 @@ const People: React.FC<{
     { x: 280, y: 700, w: 520, hoodie: "#9c4a2f", skin: "#c68863", hair: "#3a2416" },
     { x: 620, y: 760, w: 520, hoodie: "#4d6b3c", skin: "#e2b08c" },
   ];
+  const frame = useCurrentFrame();
   return (
     <>
       {seats.map((s, i) => (
@@ -165,7 +304,10 @@ const People: React.FC<{
             top: s.y,
             width: s.w,
             height: (s.w * 800) / 600,
-            transform: `rotate(${(i - 1) * (phones ? 2 : -3)}deg)`,
+            transformOrigin: "50% 100%",
+            transform: phones
+              ? `rotate(${(i - 1) * 2 + Math.sin(frame / 20 + i) * 1}deg) translateY(${Math.sin(frame / 14 + i) * 4}px)`
+              : `rotate(${(i - 1) * -3 + Math.sin(frame / 9 + i * 2) * 4}deg) translateY(${-beat(frame + i * 6) * 28}px)`,
           }}
         >
           <Student
@@ -283,7 +425,7 @@ const Reveal: React.FC<{ local: number }> = ({ local }) => {
         }}
       />
       {Array.from({ length: 12 }).map((_, i) => {
-        const ang = (i / 12) * Math.PI * 2;
+        const ang = (i / 12) * Math.PI * 2 + local / 90;
         const r = 330 + 60 * sparks;
         return (
           <div
@@ -308,7 +450,7 @@ const Reveal: React.FC<{ local: number }> = ({ local }) => {
           left: 230,
           top: 290,
           width: 620,
-          transform: `scale(${a}) rotate(${(1 - a) * -12}deg)`,
+          transform: `scale(${a * (1 + 0.03 * beat(local + sec(18)))}) rotate(${(1 - a) * -12 + Math.sin(local / 14) * 2}deg)`,
         }}
       >
         <Img src={staticFile("cx/simbolo.png")} style={{ width: "100%" }} />
@@ -321,6 +463,7 @@ const Reveal: React.FC<{ local: number }> = ({ local }) => {
           width: 900,
           opacity: b,
           transform: `translateY(${(1 - b) * 80}px)`,
+          clipPath: `inset(0 ${100 - interpolate(local, [40, 70], [0, 100], clamp)}% 0 0)`,
         }}
       >
         <Img src={staticFile("cx/logotipo.png")} style={{ width: "100%" }} />
@@ -331,51 +474,58 @@ const Reveal: React.FC<{ local: number }> = ({ local }) => {
 
 // The phone drops into the "caja de pausa" and the conversation starts.
 const PauseBox: React.FC<{ local: number }> = ({ local }) => {
-  const drop = interpolate(local, [15, 55], [0, 1], {
-    ...clamp,
-    easing: Easing.in(Easing.quad),
-  });
-  const lid = interpolate(local, [60, 80], [0, 1], {
+  const lid = interpolate(local, [82, 98], [0, 1], {
     ...clamp,
     easing: Easing.out(Easing.back(1.5)),
   });
-  const ring = local < 55 ? Math.sin(local * 1.6) * 6 : 0;
-  const talk = pop(local, 95, 12);
+  const talk = pop(local, 110, 12);
   return (
     <AbsoluteFill
       style={{
         background: `linear-gradient(180deg, #6b3a14 0%, ${CAFE} 100%)`,
       }}
     >
-      {/* phone with notifications */}
-      <div
-        style={{
-          position: "absolute",
-          left: 420,
-          top: 160 + drop * 640,
-          width: 240,
-          height: 440,
-          borderRadius: 40,
-          background: "#0d0f14",
-          border: "10px solid #2a2f3a",
-          transform: `rotate(${ring + drop * 8}deg)`,
-          opacity: interpolate(local, [50, 58], [1, 0], clamp),
-          boxShadow: "0 0 60px #3a86ff88",
-        }}
-      >
-        {[0, 1, 2, 3].map((k) => (
+      {/* three phones with notifications drop into the box */}
+      {[0, 1, 2].map((k) => {
+        const d = k * 14;
+        const dp = interpolate(local, [10 + d, 48 + d], [0, 1], {
+          ...clamp,
+          easing: Easing.in(Easing.quad),
+        });
+        const sx = [120, 420, 720][k];
+        const shake = local < 48 + d ? Math.sin(local * 1.6 + k) * 6 : 0;
+        return (
           <div
             key={k}
             style={{
-              margin: "22px 18px 0",
-              height: 60,
-              borderRadius: 14,
-              background: ["#ff4d6d", "#3a86ff", "#ffbe0b", "#8338ec"][k],
-              opacity: 0.85,
+              position: "absolute",
+              left: sx + (420 - sx) * dp,
+              top: 140 + k * 40 + dp * (700 - k * 40),
+              width: 220,
+              height: 400,
+              borderRadius: 36,
+              background: "#0d0f14",
+              border: "10px solid #2a2f3a",
+              transform: `rotate(${shake + dp * (k - 1) * 25}deg) scale(${1 - 0.3 * dp})`,
+              opacity: interpolate(local, [44 + d, 52 + d], [1, 0], clamp),
+              boxShadow: "0 0 60px #3a86ff88",
             }}
-          />
-        ))}
-      </div>
+          >
+            {[0, 1, 2, 3].map((n) => (
+              <div
+                key={n}
+                style={{
+                  margin: "20px 16px 0",
+                  height: 56,
+                  borderRadius: 14,
+                  background: ["#ff4d6d", "#3a86ff", "#ffbe0b", "#8338ec"][(n + k) % 4],
+                  opacity: 0.85,
+                }}
+              />
+            ))}
+          </div>
+        );
+      })}
       {/* box */}
       <div
         style={{
@@ -434,9 +584,32 @@ const PauseBox: React.FC<{ local: number }> = ({ local }) => {
           transform: `rotate(${(1 - lid) * -70}deg)`,
         }}
       />
+      {/* box jumps when the lid closes, then zzz */}
+      {local > 98 &&
+        [0, 1, 2].map((k) => {
+          const t = (local - 98 - k * 10) / 60;
+          if (t < 0) return null;
+          return (
+            <div
+              key={k}
+              style={{
+                position: "absolute",
+                left: 820 + k * 40 + Math.sin(t * 6) * 20,
+                top: 760 - t * 260,
+                fontFamily: SERIF,
+                fontWeight: 800,
+                fontSize: 60 + k * 14,
+                color: CREMA,
+                opacity: Math.max(0, 1 - t),
+              }}
+            >
+              z
+            </div>
+          );
+        })}
       {/* conversation starts */}
-      <Bubble x={90} y={330} s={talk * 1.5} />
-      <Bubble x={700} y={460} s={pop(local, 115, 12) * 1.3} flip />
+      <Bubble x={90} y={420} s={talk * 1.5} />
+      <Bubble x={700} y={520} s={pop(local, 125, 12) * 1.3} flip />
     </AbsoluteFill>
   );
 };
@@ -452,8 +625,37 @@ const CupFact: React.FC<{ local: number }> = ({ local }) => {
         transform: `scale(${z})`,
       }}
     >
+      {Array.from({ length: 10 }).map((_, i) => {
+        const t = local - i * 6;
+        const y = -100 + t * 14;
+        return (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: 60 + ((i * 97) % 940),
+              top: y,
+              width: 36,
+              height: 50,
+              borderRadius: "50%",
+              background: CAFE,
+              transform: `rotate(${t * 9}deg)`,
+              opacity: y > 1900 ? 0 : 0.7,
+            }}
+          />
+        );
+      })}
       <Steam x={330} y={360} scale={1.6} />
-      <Cup x={170} y={640} w={700} logo />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          transform: `translateY(${(1 - pop(local, 0, 9)) * 900}px) rotate(${Math.sin(local / 12) * 1.5}deg)`,
+          transformOrigin: "50% 80%",
+        }}
+      >
+        <Cup x={170} y={640} w={700} logo />
+      </div>
       <div
         style={{
           position: "absolute",
@@ -465,7 +667,7 @@ const CupFact: React.FC<{ local: number }> = ({ local }) => {
           background: CREMA,
           border: `8px solid ${CAFE}`,
           borderRadius: 26,
-          transform: `translateY(${(1 - card) * -260}px) rotate(${(1 - card) * 8 - 2}deg)`,
+          transform: `perspective(1200px) rotateX(${(1 - card) * 90}deg) translateY(${(1 - card) * -120}px) rotate(${-2 + Math.sin(local / 15) * 1.5}deg)`,
           opacity: card,
           boxShadow: "0 18px 40px #0005",
         }}
@@ -615,11 +817,17 @@ const End: React.FC<{ local: number }> = ({ local }) => {
   const b = pop(local, 60, 14);
   return (
     <AbsoluteFill style={{ background: PAPER, alignItems: "center" }}>
+      <AbsoluteFill
+        style={{
+          background: `repeating-conic-gradient(from ${local / 2}deg at 50% 32%, ${MIEL}33 0deg 10deg, transparent 10deg 20deg)`,
+          opacity: a,
+        }}
+      />
       <div
         style={{
           marginTop: 300,
           width: 1000,
-          transform: `scale(${0.85 + 0.15 * a})`,
+          transform: `scale(${(0.85 + 0.15 * a) * (1 + 0.02 * beat(local + sec(75)))}) rotate(${Math.sin(local / 20) * 1.2}deg)`,
           opacity: a,
         }}
       >
@@ -641,6 +849,22 @@ const End: React.FC<{ local: number }> = ({ local }) => {
         Desconéctate de la pantalla.
         <br />
         <span style={{ color: CANELA }}>Conéctate con las personas.</span>
+      </div>
+      <div
+        style={{
+          marginTop: 50,
+          padding: "22px 60px",
+          borderRadius: 60,
+          background: CAFE,
+          color: CREMA,
+          fontFamily: BODY,
+          fontWeight: 700,
+          fontSize: 54,
+          opacity: pop(local, 150, 12),
+          transform: `scale(${pop(local, 150, 9) * (1 + 0.06 * beat(local + sec(75)))})`,
+        }}
+      >
+        ¡Te esperamos!
       </div>
     </AbsoluteFill>
   );
@@ -669,7 +893,7 @@ const Meaning: React.FC<{ local: number; start: number }> = ({ local, start }) =
           top: 380,
           width: 760,
           opacity: a,
-          transform: `scale(${0.9 + 0.1 * a})`,
+          transform: `scale(${(0.9 + 0.1 * a) * (1 + 0.025 * beat(local + start))}) rotate(${Math.sin(local / 18) * 1.5}deg)`,
         }}
       >
         <Img src={staticFile("cx/simbolo.png")} style={{ width: "100%" }} />
@@ -715,7 +939,7 @@ const Meaning: React.FC<{ local: number; start: number }> = ({ local, start }) =
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              transform: `scale(${p})`,
+              transform: `scale(${p}) translateY(${Math.sin(local / 12 + i * 2) * 8}px) rotate(${Math.sin(local / 16 + i) * 2}deg)`,
               opacity: p,
               boxShadow: "0 10px 26px #0003",
             }}
@@ -760,7 +984,7 @@ const Slogan: React.FC<{ local: number; start: number }> = ({ local, start }) =>
               gap: 36,
               padding: "0 50px",
               boxSizing: "border-box",
-              transform: `translateX(${(1 - p) * (i % 2 ? 1 : -1) * 1100}px) rotate(${(i - 1) * 2}deg)`,
+              transform: `translateX(${(1 - p) * (i % 2 ? 1 : -1) * 1100}px) rotate(${(i - 1) * 2 + Math.sin(local / 10 + i) * 1.5}deg) scale(${1 + 0.04 * beat(local + start + i * 4)})`,
               boxShadow: "0 16px 40px #0006",
             }}
           >
@@ -778,6 +1002,7 @@ const Slogan: React.FC<{ local: number; start: number }> = ({ local, start }) =>
                 fontWeight: 800,
                 fontSize: 90,
                 flexShrink: 0,
+                transform: `rotate(${(1 - pop(local, r.at - start, 8)) * 360}deg)`,
               }}
             >
               {r.icon}
@@ -856,7 +1081,12 @@ const Scenes: React.FC = () => {
       </AbsoluteFill>
     );
   }
-  return draw(sceneAt(frame), frame);
+  const b = frame > sec(18) ? beat(frame) : 0;
+  return (
+    <AbsoluteFill style={{ transform: `scale(${1 + 0.015 * b})` }}>
+      {draw(sceneAt(frame), frame)}
+    </AbsoluteFill>
+  );
 };
 
 const GLITCH_AT = [sec(6), sec(13.5)];
@@ -1054,7 +1284,10 @@ export const CafeContexto: React.FC = () => {
       <Glitch>
         <Scenes />
       </Glitch>
+      <Particles />
       <Grade />
+      <Stickers />
+      <Punch />
       <Captions />
       <Audio src={staticFile("cx/musica.wav")} volume={musicVolume} />
       {CX.voice.map((v, i) => (
