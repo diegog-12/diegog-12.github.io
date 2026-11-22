@@ -4,6 +4,7 @@ import { CampaignOverlay, CampaignPromo } from "./Campaign";
 import { CafeContexto } from "./CafeContexto";
 import { CX } from "./cxData";
 import { EduRural } from "./EduRural";
+import { ElectroSteel, ES_DURATION } from "./ElectroSteel";
 import { EDU } from "./eduData";
 import { HelloWorld } from "./HelloWorld";
 import { RedesJaula } from "./RedesJaula";
@@ -111,6 +112,14 @@ export const RemotionRoot: React.FC = () => {
         fps={EDU.fps}
         width={1080}
         height={1920}
+      />
+      <Composition
+        id="ElectroSteel"
+        component={ElectroSteel}
+        durationInFrames={ES_DURATION}
+        fps={30}
+        width={1920}
+        height={1080}
       />
       <Composition
         id="CafeContexto"
