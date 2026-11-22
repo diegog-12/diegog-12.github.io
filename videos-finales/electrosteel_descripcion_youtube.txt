@@ -1,0 +1,20 @@
+Proyección de la demanda de energía eléctrica – Caso ElectroSteel S.A.
+
+Exposición del curso Estadística para Ingeniería (Universidad Continental). Analizamos 84 meses de consumo eléctrico con una descomposición multiplicativa (Y = T × S × I) y una tendencia lineal por mínimos cuadrados para proyectar la demanda del primer trimestre del año 8.
+
+Integrantes: Diego Gamarra Cabello · Jeyson Rojas Ore · Liz Escobar Villalba
+
+Capítulos:
+0:00 Portada e introducción
+0:35 ¿Qué necesita saber la gerencia?
+1:16 Análisis exploratorio del consumo
+1:51 Una serie, cuatro componentes
+2:53 Método: descomposición multiplicativa
+3:52 Índices estacionales
+4:53 Modelo de tendencia lineal
+5:44 Pronóstico del primer trimestre del año 8
+6:41 ¿Qué tan preciso es el modelo?
+7:07 Decisiones para la gerencia
+7:55 Conclusiones
+
+#Estadística #SeriesDeTiempo #Pronóstico #UniversidadContinental
