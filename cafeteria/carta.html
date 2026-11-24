@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contexto | Nuestra Carta</title>
+    <meta name="description" content="La carta de Contexto: cafés, bebidas frías, postres y sándwiches con QR educativo y descuentos.">
+    <meta name="theme-color" content="#5C2809">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
+</head>
+<body>
+
+    <header class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="brand-nav">
+                <span class="coffee-dot"></span>
+                <span>Contexto</span>
+            </a>
+            <nav class="nav-links" aria-label="Principal">
+                <a href="index.html" class="nav-pill">Inicio</a>
+                <a href="marca.html" class="nav-pill">La Marca</a>
+                <a href="carta.html" class="nav-pill active-pill" aria-current="page">Nuestra Carta</a>
+                <a href="delivery.html" class="nav-pill">Delivery</a>
+            </nav>
+            <button class="cart-btn" id="openCartBtn" aria-controls="cartDrawer" aria-expanded="false">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Pedido <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="menu-section page-section">
+        <div class="container">
+            <div class="section-header" data-reveal>
+                <h2>Nuestra Carta con QR Educativo<svg class="wave" viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9 C 40 2, 80 14, 120 8 S 200 2, 237 8"/></svg></h2>
+                <p>Cada producto incluye un código QR vinculado a retos virales y descuentos del 5% al 10%.</p>
+            </div>
+
+            <div class="menu-controls">
+                <div class="filter-buttons" role="group" aria-label="Filtrar por categoría">
+                    <span class="filter-indicator" aria-hidden="true"></span>
+                    <button class="filter-btn active" data-category="todos" aria-pressed="true">Todos</button>
+                    <button class="filter-btn" data-category="calientes" aria-pressed="false">Cafés Calientes</button>
+                    <button class="filter-btn" data-category="frios" aria-pressed="false">Bebidas Frías</button>
+                    <button class="filter-btn" data-category="postres" aria-pressed="false">Postres</button>
+                    <button class="filter-btn" data-category="salados" aria-pressed="false">Sándwiches</button>
+                </div>
+                <label class="search-wrap">
+                    <span class="sr-only">Buscar en la carta</span>
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="search" id="searchInput" class="search-input" placeholder="Buscar café, postre...">
+                </label>
+            </div>
+
+            <div class="menu-grid" id="menuGrid" aria-live="polite"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h3>Contexto</h3>
+                <p>Un dato, un sorbo y un buen rato.</p>
+            </div>
+            <div>
+                <p><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg> Campus Universitario — Lunes a Sábado de 8:00 AM a 9:30 PM</p>
+                <p><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Pedidos: +51 987 654 321</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Tu pedido" aria-hidden="true">
+        <div class="cart-header">
+            <h3>Tu Pedido</h3>
+            <button class="close-cart" id="closeCartBtn" aria-label="Cerrar pedido"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer"></div>
+        <div class="cart-footer">
+            <div class="cart-totals">
+                <div class="total-row">
+                    <span>Subtotal:</span>
+                    <span id="drawerSubtotal">S/ 0.00</span>
+                </div>
+                <div class="total-row grand-total">
+                    <span>Total estimado:</span>
+                    <span id="drawerTotal">S/ 0.00</span>
+                </div>
+            </div>
+            <a href="delivery.html" class="btn btn-primary btn-block">Ir a Delivery <svg class="icon arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </div>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html>

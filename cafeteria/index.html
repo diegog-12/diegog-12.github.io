@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contexto | Inicio</title>
+    <meta name="description" content="Contexto: café de especialidad y pensamiento crítico en el campus. Un dato, un sorbo y un buen rato.">
+    <meta name="theme-color" content="#5C2809">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
+</head>
+<body>
+
+    <header class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="brand-nav">
+                <span class="coffee-dot"></span>
+                <span>Contexto</span>
+            </a>
+            <nav class="nav-links" aria-label="Principal">
+                <a href="index.html" class="nav-pill active-pill" aria-current="page">Inicio</a>
+                <a href="marca.html" class="nav-pill">La Marca</a>
+                <a href="carta.html" class="nav-pill">Nuestra Carta</a>
+                <a href="delivery.html" class="nav-pill">Delivery</a>
+            </nav>
+            <button class="cart-btn" id="openCartBtn" aria-controls="cartDrawer" aria-expanded="false">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Pedido <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1 class="split" data-split>Contexto</h1>
+                <div class="slogan-wrap">
+                    <p class="slogan">“<span class="phrase">Un dato,</span> <span class="phrase">un sorbo</span> <span class="phrase">y un buen rato</span>”</p>
+                    <svg class="wave" viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9 C 40 2, 80 14, 120 8 S 200 2, 237 8"/></svg>
+                </div>
+                <p class="hero-desc">
+                    Un espacio innovador en el campus que fusiona el café y la lectura con la alfabetización mediática.
+                    Escanea los códigos QR de nuestros productos y libros, supera retos de verificación de noticias y obtén descuentos.
+                </p>
+                <div class="hero-buttons">
+                    <a href="carta.html" class="btn btn-primary">Ver la Carta & Retos <svg class="icon arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+                    <a href="delivery.html" class="btn btn-secondary">Pedir Delivery</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-logo-card" id="logoCard">
+                    <div class="logo-stage">
+                        <img src="img/logo-contexto.jpeg" alt="Logo de Contexto: una persona pensativa con una taza de café y un globo de diálogo, con el lema Un dato, un sorbo y un buen rato" class="main-logo" width="1456" height="720">
+                        <svg class="logo-fx" viewBox="0 0 1456 720" preserveAspectRatio="none" aria-hidden="true">
+                            <path class="steam" d="M292 352 c -14 -16 14 -26 0 -44"/>
+                            <path class="steam" d="M318 356 c -14 -16 14 -26 0 -44"/>
+                            <path class="steam" d="M305 350 c -14 -16 14 -26 0 -44"/>
+                            <circle class="dot-cover" cx="470" cy="160" r="26"/>
+                            <circle class="dot-cover" cx="527" cy="160" r="26"/>
+                            <circle class="dot-cover" cx="584" cy="160" r="26"/>
+                            <circle class="dot" cx="470" cy="160" r="18"/>
+                            <circle class="dot" cx="527" cy="160" r="18"/>
+                            <circle class="dot" cx="584" cy="160" r="18"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="seal" id="seal" aria-hidden="true">
+                    <svg class="seal-text" viewBox="0 0 132 132">
+                        <defs><path id="sealPath" d="M66 66 m -50 0 a 50 50 0 1 1 100 0 a 50 50 0 1 1 -100 0"/></defs>
+                        <text><textPath href="#sealPath" textLength="308" lengthAdjust="spacingAndGlyphs">Café de especialidad · Pensamiento crítico ·</textPath></text>
+                    </svg>
+                    <svg class="seal-core" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)" fill="currentColor"/><path d="M9 4c4 4-2 12 6 16" stroke="#5C2809" stroke-width="1.8" fill="none" transform="rotate(30 12 12)"/></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="ticker" aria-label="Lo que encuentras en Contexto">
+        <div class="ticker-track">
+            <div class="ticker-group"><span>Un dato, un sorbo y un buen rato</span><svg class="bean" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)" fill="currentColor"/><path d="M9 4c4 4-2 12 6 16" stroke="#5C2809" stroke-width="1.8" fill="none" transform="rotate(30 12 12)"/></svg><span>Verifica antes de compartir</span><svg class="bean" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)" fill="currentColor"/><path d="M9 4c4 4-2 12 6 16" stroke="#5C2809" stroke-width="1.8" fill="none" transform="rotate(30 12 12)"/></svg><span>Escanea el QR de tu taza</span><svg class="bean" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)" fill="currentColor"/><path d="M9 4c4 4-2 12 6 16" stroke="#5C2809" stroke-width="1.8" fill="none" transform="rotate(30 12 12)"/></svg><span>Supera el reto y gana de 5% a 10% de descuento</span><svg class="bean" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)" fill="currentColor"/><path d="M9 4c4 4-2 12 6 16" stroke="#5C2809" stroke-width="1.8" fill="none" transform="rotate(30 12 12)"/></svg><span>Delivery en el campus</span><svg class="bean" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)" fill="currentColor"/><path d="M9 4c4 4-2 12 6 16" stroke="#5C2809" stroke-width="1.8" fill="none" transform="rotate(30 12 12)"/></svg></div>
+            <div class="ticker-group" aria-hidden="true"><span>Un dato, un sorbo y un buen rato</span><svg class="bean" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)" fill="currentColor"/><path d="M9 4c4 4-2 12 6 16" stroke="#5C2809" stroke-width="1.8" fill="none" transform="rotate(30 12 12)"/></svg><span>Verifica antes de compartir</span><svg class="bean" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)" fill="currentColor"/><path d="M9 4c4 4-2 12 6 16" stroke="#5C2809" stroke-width="1.8" fill="none" transform="rotate(30 12 12)"/></svg><span>Escanea el QR de tu taza</span><svg class="bean" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)" fill="currentColor"/><path d="M9 4c4 4-2 12 6 16" stroke="#5C2809" stroke-width="1.8" fill="none" transform="rotate(30 12 12)"/></svg><span>Supera el reto y gana de 5% a 10% de descuento</span><svg class="bean" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)" fill="currentColor"/><path d="M9 4c4 4-2 12 6 16" stroke="#5C2809" stroke-width="1.8" fill="none" transform="rotate(30 12 12)"/></svg><span>Delivery en el campus</span><svg class="bean" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)" fill="currentColor"/><path d="M9 4c4 4-2 12 6 16" stroke="#5C2809" stroke-width="1.8" fill="none" transform="rotate(30 12 12)"/></svg></div>
+        </div>
+    </div>
+
+    <section class="reto" id="reto">
+        <div class="container reto-grid">
+            <div class="reto-intro">
+                <h2>¿Real o falso? Pon a prueba tu criterio</h2>
+                <p>Así funcionan los QR de nuestras tazas: lees una afirmación y decides. En la cafetería, superar el reto te da descuento en tu pedido.</p>
+            </div>
+            <div class="reto-card" id="retoCard">
+                <div class="reto-meta">
+                    <span id="retoCount">Reto 1 de 3</span>
+                    <span class="reto-progress" id="retoProgress" aria-hidden="true"></span>
+                </div>
+                <p class="reto-claim" id="retoClaim">Cargando reto…</p>
+                <div class="reto-actions">
+                    <button type="button" class="btn btn-primary" data-answer="true">Es real</button>
+                    <button type="button" class="btn btn-secondary" data-answer="false">Es falso</button>
+                </div>
+                <div class="reto-result" id="retoResult" aria-live="polite" hidden>
+                    <span class="reto-verdict" id="retoVerdict"></span>
+                    <span></span>
+                    <p class="reto-explain" id="retoExplain"></p>
+                    <button type="button" class="btn btn-secondary" id="retoNext">Siguiente reto <svg class="icon arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+                </div>
+                <span class="stamp" id="retoStamp" aria-hidden="true"></span>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h3>Contexto</h3>
+                <p>Un dato, un sorbo y un buen rato.</p>
+            </div>
+            <div>
+                <p><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg> Campus Universitario — Lunes a Sábado de 8:00 AM a 9:30 PM</p>
+                <p><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Pedidos: +51 987 654 321</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Tu pedido" aria-hidden="true">
+        <div class="cart-header">
+            <h3>Tu Pedido</h3>
+            <button class="close-cart" id="closeCartBtn" aria-label="Cerrar pedido"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer"></div>
+        <div class="cart-footer">
+            <div class="cart-totals">
+                <div class="total-row">
+                    <span>Subtotal:</span>
+                    <span id="drawerSubtotal">S/ 0.00</span>
+                </div>
+                <div class="total-row grand-total">
+                    <span>Total estimado:</span>
+                    <span id="drawerTotal">S/ 0.00</span>
+                </div>
+            </div>
+            <a href="delivery.html" class="btn btn-primary btn-block">Ir a Delivery <svg class="icon arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </div>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html>
