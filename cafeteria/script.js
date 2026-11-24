@@ -434,6 +434,68 @@ if (logoCard && window.matchMedia("(hover: hover) and (pointer: fine)").matches 
     });
 }
 
+/* ---------- Manifiesto: palabra por palabra al hacer scroll ---------- */
+
+function initWordReveal(passage) {
+    const section = passage.closest(".manifesto");
+    if (!section) return;
+
+    // Copia intacta para lectores de pantalla; la versión dividida queda solo visual
+    const accessible = passage.cloneNode(true);
+    accessible.removeAttribute("data-word-reveal");
+    accessible.classList.add("sr-only");
+    passage.removeAttribute("id");
+    passage.setAttribute("aria-hidden", "true");
+    passage.before(accessible);
+
+    const walker = document.createTreeWalker(passage, NodeFilter.SHOW_TEXT, {
+        acceptNode: (node) => (node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT),
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+        const fragment = document.createDocumentFragment();
+        node.nodeValue.split(/(\s+)/).forEach((token) => {
+            if (/^\s+$/.test(token)) fragment.append(token);
+            else if (token) {
+                const span = document.createElement("span");
+                span.dataset.word = "";
+                span.textContent = token;
+                fragment.append(span);
+            }
+        });
+        node.replaceWith(fragment);
+    });
+
+    const words = [...passage.querySelectorAll("[data-word]")];
+    const percentEl = section.querySelector(".read-percent");
+    let scheduled = false;
+
+    function render() {
+        scheduled = false;
+        const rect = section.getBoundingClientRect();
+        const distance = Math.max(1, section.offsetHeight - window.innerHeight);
+        const progress = reduceMotion.matches ? 1 : Math.min(1, Math.max(0, -rect.top / distance));
+        section.style.setProperty("--progress", progress.toFixed(4));
+        // la "cabeza" de lectura avanza con el scroll; cada palabra se funde en ~2.4 palabras de recorrido
+        const head = 2.4 + progress * (words.length + 0.4);
+        words.forEach((word, i) => {
+            const local = Math.min(1, Math.max(0, (head - i) / 2.4));
+            word.style.setProperty("--word-progress", local.toFixed(3));
+        });
+        if (percentEl) percentEl.textContent = `${Math.round(progress * 100)}%`;
+    }
+
+    const request = () => { if (!scheduled) { scheduled = true; requestAnimationFrame(render); } };
+    window.addEventListener("scroll", request, { passive: true });
+    window.addEventListener("resize", request);
+    reduceMotion.addEventListener?.("change", request);
+    document.fonts && document.fonts.ready.then(request);
+    render();
+}
+
+document.querySelectorAll("[data-word-reveal]").forEach(initWordReveal);
+
 /* ---------- Reto del día ---------- */
 
 // Edita, agrega o cambia estos retos cuando quieras.
