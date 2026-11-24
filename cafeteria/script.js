@@ -914,5 +914,20 @@ document.addEventListener("keydown", (e) => {
     else closeCart();
 });
 
+/* ---------- Experiencia 3D: navegación por estaciones ---------- */
+
+document.addEventListener("station", (e) => {
+    const id = e.detail;
+    document.querySelectorAll("[data-station-link]").forEach((a) => {
+        const on = a.dataset.stationLink === id;
+        a.classList.toggle("on", on);
+        if (a.classList.contains("nav-pill")) {
+            a.classList.toggle("active-pill", on);
+            if (on) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
+        }
+    });
+});
+document.getElementById("drawerToDelivery")?.addEventListener("click", () => closeCart());
+
 renderMenu();
 updateCartUI();
