@@ -3,17 +3,20 @@
    ========================================================= */
 
 :root {
-    --bg-cream: #F2E2C4;
-    --bg-light: #FAF3E6;
-    --coffee-dark: #5C2809;
-    --coffee-darker: #3D1A05;
+    /* base clara y tinta casi negra: el café queda para los productos */
+    --bg-cream: #FBF1E3;
+    --bg-light: #FFFAF3;
+    --coffee-dark: #24160F;
+    --coffee-darker: #170D08;
     --accent-orange: #E87A14;
     --bubble: #F7B13C;
-    --text-muted: #6E4222;
+    --teal: #1D5457;
+    --teal-deep: #133A3D;
+    --text-muted: #5C4A3F;
     --white: #FFFFFF;
     --true-green: #2E6A35;
     --false-red: #B0281A;
-    --shadow: 0 10px 25px rgba(92, 40, 9, 0.1);
+    --shadow: 0 10px 25px rgba(36, 22, 15, 0.1);
 
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
@@ -94,7 +97,7 @@ h1, h2, h3, .slogan {
 /* ---------- Navegación ---------- */
 
 .navbar {
-    background-color: rgba(242, 226, 196, 0.92);
+    background-color: rgba(251, 241, 227, 0.92);
     backdrop-filter: blur(8px);
     border-bottom: 2px solid rgba(92, 40, 9, 0.15);
     position: sticky;
@@ -2134,3 +2137,51 @@ body.overlay-open .chat-nudge {
     .slide[data-slot="0"] .slide-art, .showcase-wave svg { animation: none !important; }
     .showcase-panel { transition: none; }
 }
+
+
+/* =========================================================
+   Paleta: naranja y amarillo del logo + turquesa de contraste
+   ========================================================= */
+
+/* acciones en naranja con texto oscuro (contraste legible) */
+.btn-primary { background-color: var(--accent-orange); color: var(--coffee-dark); border-color: var(--coffee-dark); }
+.btn-primary:hover { background-color: var(--coffee-dark); color: var(--bg-light); border-color: var(--coffee-dark); box-shadow: 4px 4px 0 var(--accent-orange); }
+.cart-btn, .add-btn, .product-tag, .step-num, .chat-send { color: var(--coffee-dark); }
+.cart-btn:hover { background-color: var(--bubble); color: var(--coffee-dark); box-shadow: 3px 4px 0 var(--coffee-dark); }
+.add-btn:hover { background-color: var(--bubble); }
+.add-btn.added { background-color: #BFE3C4; color: var(--coffee-dark); }
+.chat-send:hover { background: var(--bubble); }
+::selection { background: var(--bubble); color: var(--coffee-dark); }
+
+/* reto: bloque amarillo del globo del logo */
+.reto { background: var(--bubble); border-block: 2px solid var(--coffee-dark); }
+.reto-intro p { color: #3B2A1E; }
+.reto-card { box-shadow: 10px 10px 0 var(--coffee-dark); }
+
+/* visítanos y la marca: fondo claro con acento turquesa */
+.visit { padding-top: 5rem; }
+.visit-media { box-shadow: 10px 10px 0 var(--teal); }
+
+.feature-card:nth-child(1) .feature-icon { background: var(--bubble); }
+.feature-card:nth-child(2) .feature-icon { background: var(--accent-orange); }
+.feature-card:nth-child(3) .feature-icon { background: #9CC9C2; }
+.feature-card:nth-child(1):hover { box-shadow: 8px 8px 0 var(--bubble); }
+.feature-card:nth-child(2):hover { box-shadow: 8px 8px 0 var(--accent-orange); }
+.feature-card:nth-child(3):hover { box-shadow: 8px 8px 0 var(--teal); }
+.feature-card { background: var(--bg-light); }
+.about { background: var(--bg-cream); }
+
+/* delivery, carrito, chat y pie en turquesa */
+.delivery-section { background-color: var(--teal); }
+.delivery-info > p { color: #D7ECE8; }
+.delivery-steps::before { border-left-color: rgba(215, 236, 232, 0.45); }
+.step-num { border-color: var(--bg-light); }
+.cart-header, .chat-head { background-color: var(--teal); }
+.chat-status { color: #CFE7E3; }
+.msg-user { background: var(--teal); }
+.footer { background-color: var(--teal-deep); }
+.footer .icon { color: var(--bubble); }
+.foot-qr .icon { background: var(--teal); }
+
+/* filtros de la carta */
+.filter-indicator { background: var(--teal); box-shadow: 2px 3px 0 var(--accent-orange); }

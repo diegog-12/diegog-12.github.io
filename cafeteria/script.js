@@ -608,7 +608,8 @@ if (showcase) {
     }
 
     if (userPaused) setPaused(true);
-    show(0, { animateInfo: false });
+    // empieza en el producto marcado con featured: true en products.js
+    show(Math.max(0, products.findIndex((p) => p.featured)), { animateInfo: false });
 }
 
 /* ---------- Reto del día ---------- */
