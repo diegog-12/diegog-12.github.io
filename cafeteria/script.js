@@ -331,10 +331,12 @@ deliveryForm && deliveryForm.addEventListener("submit", (e) => {
     }
     formError && (formError.hidden = true);
 
-    const val = (id) => escapeHTML(document.getElementById(id).value.trim());
+    const raw = (id) => document.getElementById(id).value.trim();
+    const val = (id) => escapeHTML(raw(id));
     const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
     const shipping = parseFloat(deliveryZoneSelect.value);
     const total = subtotal + shipping;
+    const zone = deliveryZoneSelect.options[deliveryZoneSelect.selectedIndex].text;
 
     document.getElementById("receiptDetails").innerHTML = `
         <p><strong>Cliente:</strong> ${val("customerName")}</p>
@@ -344,26 +346,82 @@ deliveryForm && deliveryForm.addEventListener("submit", (e) => {
         <hr>
         ${cart.map((i) => `<p>${i.qty}x ${escapeHTML(i.name)} (${money(i.price * i.qty)})</p>`).join("")}
         <p>Envío: ${money(shipping)}</p>
-        <p style="margin-top: 8px;"><strong>Total final: ${money(total)}</strong></p>`;
+        <p style="margin-top: 8px;"><strong>Total: ${money(total)}</strong></p>`;
+
+    const message = [
+        "¡Hola, Contexto! Quiero hacer este pedido:",
+        "",
+        ...cart.map((i) => `• ${i.qty}x ${i.name} — ${money(i.price * i.qty)}`),
+        "",
+        `Entrega: ${zone}`,
+        `Total: ${money(total)}`,
+        "",
+        `Nombre: ${raw("customerName")}`,
+        `Teléfono: ${raw("customerPhone")}`,
+        `Dirección: ${raw("customerAddress")}`,
+        `Pago: ${raw("paymentMethod")}`,
+    ].join("\n");
+    document.getElementById("sendWhatsApp").href = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(message)}`;
 
     lastFocus = document.activeElement;
     orderModal.classList.add("open");
     document.body.classList.add("overlay-open");
-    setTimeout(() => document.getElementById("closeModalBtn")?.focus({ preventScroll: true }), 50);
+    setTimeout(() => document.getElementById("sendWhatsApp")?.focus({ preventScroll: true }), 50);
 });
 
 function closeOrderModal() {
     if (!orderModal || !orderModal.classList.contains("open")) return;
     orderModal.classList.remove("open");
     document.body.classList.remove("overlay-open");
-    cart = [];
-    saveCart();
-    deliveryForm.reset();
-    updateCartUI();
     lastFocus && lastFocus.focus({ preventScroll: true });
 }
 
+// Al enviar por WhatsApp se vacía el carrito y se muestra qué sigue
+document.getElementById("sendWhatsApp")?.addEventListener("click", () => {
+    setTimeout(() => {
+        cart = [];
+        saveCart();
+        deliveryForm.reset();
+        updateCartUI();
+        closeOrderModal();
+        const summary = document.getElementById("inlineCartSummary");
+        if (summary) summary.innerHTML = `<p><strong>¡Pedido enviado a WhatsApp!</strong> Te confirmaremos por ahí. Si no se abrió WhatsApp, escríbenos al ${escapeHTML(SITE.phoneDisplay)}.</p>`;
+    }, 300);
+});
+
 document.getElementById("closeModalBtn")?.addEventListener("click", closeOrderModal);
+
+
+/* ---------- Datos del negocio (config.js) ---------- */
+
+(function applySiteData() {
+    const wa = `https://wa.me/${SITE.whatsapp}`;
+    document.querySelectorAll("[data-site]").forEach((el) => {
+        const v = SITE[el.dataset.site];
+        if (v) el.textContent = v; else if (el.dataset.site === "addressDetail") el.hidden = true;
+    });
+    document.querySelectorAll("[data-whatsapp-link]").forEach((a) => (a.href = wa));
+    document.querySelectorAll("[data-instagram-link]").forEach((a) => {
+        if (!SITE.instagram) return;
+        a.href = `https://instagram.com/${SITE.instagram}`;
+        if (!a.textContent.trim()) a.textContent = `@${SITE.instagram}`;
+        a.hidden = false;
+    });
+    document.querySelectorAll("[data-instagram-wrap]").forEach((el) => (el.hidden = !SITE.instagram));
+
+    const hours = document.getElementById("visitHours");
+    if (hours) hours.innerHTML = SITE.hours.map((h) => `<li><span>${escapeHTML(h.days)}</span><strong>${escapeHTML(h.time)}</strong></li>`).join("");
+
+    const mapsLink = document.getElementById("mapsLink");
+    const media = document.getElementById("visitMedia");
+    if (SITE.mapsQuery) {
+        if (mapsLink) { mapsLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE.mapsQuery)}`; mapsLink.hidden = false; }
+        if (media) {
+            media.classList.add("has-map");
+            media.innerHTML = `<iframe title="Mapa: ubicación de Contexto" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${encodeURIComponent(SITE.mapsQuery)}&output=embed"></iframe>`;
+        }
+    }
+})();
 
 /* ---------- Navegación y entradas ---------- */
 
@@ -399,7 +457,7 @@ function pauseWhenHidden(el) {
     if (!el || !("IntersectionObserver" in window)) return;
     new IntersectionObserver(([entry]) => el.classList.toggle("paused", !entry.isIntersecting)).observe(el);
 }
-document.querySelectorAll(".hero-visual, .ticker, .scooter-lane").forEach(pauseWhenHidden);
+
 
 // Inclinación suave del logo hacia el puntero
 const logoCard = document.getElementById("logoCard");
@@ -553,68 +611,6 @@ if (showcase) {
     show(0, { animateInfo: false });
 }
 
-/* ---------- Manifiesto: palabra por palabra al hacer scroll ---------- */
-
-function initWordReveal(passage) {
-    const section = passage.closest(".manifesto");
-    if (!section) return;
-
-    // Copia intacta para lectores de pantalla; la versión dividida queda solo visual
-    const accessible = passage.cloneNode(true);
-    accessible.removeAttribute("data-word-reveal");
-    accessible.classList.add("sr-only");
-    passage.removeAttribute("id");
-    passage.setAttribute("aria-hidden", "true");
-    passage.before(accessible);
-
-    const walker = document.createTreeWalker(passage, NodeFilter.SHOW_TEXT, {
-        acceptNode: (node) => (node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT),
-    });
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach((node) => {
-        const fragment = document.createDocumentFragment();
-        node.nodeValue.split(/(\s+)/).forEach((token) => {
-            if (/^\s+$/.test(token)) fragment.append(token);
-            else if (token) {
-                const span = document.createElement("span");
-                span.dataset.word = "";
-                span.textContent = token;
-                fragment.append(span);
-            }
-        });
-        node.replaceWith(fragment);
-    });
-
-    const words = [...passage.querySelectorAll("[data-word]")];
-    const percentEl = section.querySelector(".read-percent");
-    let scheduled = false;
-
-    function render() {
-        scheduled = false;
-        const rect = section.getBoundingClientRect();
-        const distance = Math.max(1, section.offsetHeight - window.innerHeight);
-        const progress = reduceMotion.matches ? 1 : Math.min(1, Math.max(0, -rect.top / distance));
-        section.style.setProperty("--progress", progress.toFixed(4));
-        // la "cabeza" de lectura avanza con el scroll; cada palabra se funde en ~2.4 palabras de recorrido
-        const head = 2.4 + progress * (words.length + 0.4);
-        words.forEach((word, i) => {
-            const local = Math.min(1, Math.max(0, (head - i) / 2.4));
-            word.style.setProperty("--word-progress", local.toFixed(3));
-        });
-        if (percentEl) percentEl.textContent = `${Math.round(progress * 100)}%`;
-    }
-
-    const request = () => { if (!scheduled) { scheduled = true; requestAnimationFrame(render); } };
-    window.addEventListener("scroll", request, { passive: true });
-    window.addEventListener("resize", request);
-    reduceMotion.addEventListener?.("change", request);
-    document.fonts && document.fonts.ready.then(request);
-    render();
-}
-
-document.querySelectorAll("[data-word-reveal]").forEach(initWordReveal);
-
 /* ---------- Reto del día ---------- */
 
 // Edita, agrega o cambia estos retos cuando quieras.
@@ -708,11 +704,14 @@ if (retoCard) {
    las preguntas frecuentes con la información de esta web.
    ========================================================= */
 
-const WHATSAPP = "51987654321";
+const WHATSAPP = SITE.whatsapp;
 
 const FAQ = [
     { test: /horario|hora|abren|abierto|cierran|atienden/i,
-      reply: "Atendemos de lunes a sábado, de 8:00 a. m. a 9:30 p. m., en el campus universitario." },
+      reply: `Atendemos ${SITE.hours.map((h) => `${h.days.toLowerCase()}: ${h.time}`).join(" · ")}.` },
+    { test: /d[oó]nde|ubicaci[oó]n|direcci[oó]n|llegar|queda|local/i,
+      reply: `Estamos en ${[SITE.address, SITE.addressDetail].filter(Boolean).join(", ")}.`,
+      link: SITE.mapsQuery ? { href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE.mapsQuery)}`, text: "Abrir en Google Maps" } : undefined },
     { test: /delivery|env[ií]o|zona|llevan|reparto|costo de env/i,
       reply: "Hacemos delivery: Campus / El Tambo S/ 4.00 · San Carlos / La Merced S/ 5.00 · Chilca / Pilcomayo S/ 7.00. El recojo en barra es gratis.",
       link: { href: "delivery.html", text: "Hacer mi pedido" } },
@@ -727,7 +726,7 @@ const FAQ = [
       reply: "¡Hola! ¿En qué te ayudo? Puedo contarte del horario, la carta, el delivery o los retos QR." },
 ];
 
-const CHIPS = ["Horario", "Zonas de delivery", "¿Cómo funcionan los retos QR?", "Métodos de pago"];
+const CHIPS = ["Horario", "¿Dónde están?", "Zonas de delivery", "¿Cómo funcionan los retos QR?", "Métodos de pago"];
 
 function isOpenNow() {
     try {
@@ -897,11 +896,6 @@ const ContextoChat = (() => {
     if (history.length) history.forEach((m) => renderMessage(m, true));
     else addMessage("bot", "¡Hola! Soy el asistente de Contexto. Pregúntame por la carta, el delivery o los retos QR.");
     launcher.classList.remove("has-unread");
-
-    // Aviso amable, una vez por sesión
-    if (!store.get("contexto_nudged", false, sessionStorage)) {
-        setTimeout(() => { if (!panel.classList.contains("open")) nudge.hidden = false; }, 7000);
-    }
 
     api.open = openPanel;
     api.close = closePanel;

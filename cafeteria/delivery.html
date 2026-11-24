@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#5C2809">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700..900,0..100,0..1&family=Lora:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,500..900,0..100,0..1;1,9..144,500..900,0..100,0..1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script>document.documentElement.classList.replace('no-js', 'js');</script>
 </head>
@@ -35,17 +35,6 @@
     <main class="delivery-section page-section">
         <div class="container delivery-grid">
             <div class="delivery-info" data-reveal>
-                <div class="scooter-lane"><div class="scooter-track"><svg class="scooter" viewBox="0 0 64 40" aria-hidden="true">
-                        <g class="body">
-                            <rect class="box" x="3" y="5" width="15" height="12" rx="2"/>
-                            <path d="M8 29c0-7 5-11 12-11h12l5 11"/>
-                            <path d="M20 29h17"/>
-                            <path d="M48 31 43 9"/>
-                            <path d="M39 9h8"/>
-                        </g>
-                        <circle cx="13" cy="32" r="5.5"/>
-                        <circle cx="49" cy="32" r="5.5"/>
-                    </svg></div></div>
                 <h2>Llevamos tu café y tus retos hasta tu facultad u oficina</h2>
                 <p>Preparamos tu pedido al instante para acompañar tus horas de estudio e investigación.</p>
                 <ol class="delivery-steps">
@@ -95,7 +84,8 @@
                         </select>
                     </div>
                     <p class="form-error" id="formError" role="alert" hidden></p>
-                    <button type="submit" class="btn btn-primary btn-block">Confirmar Pedido de Delivery</button>
+                    <button type="submit" class="btn btn-primary btn-block">Revisar y enviar por WhatsApp</button>
+                    <p class="form-note">Tu pedido se envía a nuestro WhatsApp y queda confirmado cuando te respondamos.</p>
                 </form>
             </div>
         </div>
@@ -108,8 +98,9 @@
                 <p>Un dato, un sorbo y un buen rato.</p>
             </div>
             <div>
-                <p><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg> Campus Universitario — Lunes a Sábado de 8:00 AM a 9:30 PM</p>
-                <p><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Pedidos: +51 987 654 321</p>
+                <p><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg> <span data-site="address">Campus Universitario</span> — Lunes a Sábado de 8:00 AM a 9:30 PM</p>
+                <p><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Pedidos: <a data-whatsapp-link data-site="phoneDisplay" target="_blank" rel="noopener">+51 987 654 321</a></p>
+                <p data-instagram-wrap hidden><a data-instagram-link target="_blank" rel="noopener"></a></p>
             </div>
         </div>
     </footer>
@@ -138,16 +129,18 @@
     <div class="modal" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="orderTitle">
         <div class="modal-content">
             <div class="modal-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M20 6 9 17l-5-5"/></svg></div>
-            <h3 id="orderTitle">¡Pedido Confirmado!</h3>
-            <p>Gracias por elegir <strong>Contexto</strong>. Tu orden va en camino con su código QR para el reto viral.</p>
+            <h3 id="orderTitle">Tu pedido está listo para enviar</h3>
+            <p>Revisa el resumen y envíalo por WhatsApp. Te confirmamos el pedido y el tiempo de entrega por ahí mismo.</p>
             <div class="receipt-box" id="receiptBox">
                 <div id="receiptDetails"></div>
-                <span class="stamp receipt-stamp" aria-hidden="true">Confirmado</span>
+                <span class="stamp receipt-stamp" aria-hidden="true">Listo</span>
             </div>
-            <button class="btn btn-primary btn-block" id="closeModalBtn">Listo</button>
+            <a class="btn btn-primary btn-block" id="sendWhatsApp" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
+            <button class="btn btn-secondary btn-block modal-back" id="closeModalBtn">Volver y editar</button>
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script src="products.js"></script>
     <script src="script.js"></script>
 </body>
