@@ -50,24 +50,7 @@ const ICONS = {
 
 /* ---------- Productos ---------- */
 
-const products = [
-    { id: 1, name: "Espresso Contexto Doble", category: "calientes", price: 7.50, tag: "Incluye QR Reto Viral",
-      desc: "Extracción intensa de grano peruano de altura. Escanea el QR para verificar noticias y ganar 5% de descuento." },
-    { id: 2, name: "Cappuccino Artesanal", category: "calientes", price: 10.00, tag: "Favorito",
-      desc: "Espresso equilibrado con leche vaporizada sedosa y toque de cacao." },
-    { id: 3, name: "Latte de Vainilla & Panela", category: "calientes", price: 11.50, tag: "Especial",
-      desc: "Suave café con leche endulzado naturalmente con panela orgánica." },
-    { id: 4, name: "Cold Brew Naranja", category: "frios", price: 12.00, tag: "Refrescante",
-      desc: "Café macerado en frío por 16 horas con un toque cítrico de naranja." },
-    { id: 5, name: "Frappé Mocha Intenso", category: "frios", price: 13.50, tag: "Top Ventas",
-      desc: "Mezcla helada de espresso, chocolate bitter y crema batida." },
-    { id: 6, name: "Cheesecake de Maracuyá", category: "postres", price: 12.50, tag: "Casero",
-      desc: "Base crocante de galleta, crema suave y jalea natural de maracuyá." },
-    { id: 7, name: "Brownie Tibio con Pecanas", category: "postres", price: 9.00, tag: "Ideal con café",
-      desc: "Chocolate al 70% con trozos de pecanas tostadas." },
-    { id: 8, name: "Croissant Mixto Artesanal", category: "salados", price: 11.00, tag: "Recién horneado",
-      desc: "Hojaldre de mantequilla relleno de jamón inglés y queso edam fundido." },
-];
+const products = PRODUCTS;
 
 const money = (n) => `S/ ${n.toFixed(2)}`;
 
@@ -255,9 +238,9 @@ function renderMenu(category = "todos", searchTerm = "") {
 
     menuGrid.innerHTML = filtered.map((product, i) => `
         <article class="product-card enter" style="--i:${Math.min(i, 7)}">
-            <div class="product-banner">
+            <div class="product-banner" style="--banner:${product.color}">
                 <span class="product-tag">${escapeHTML(product.tag)}</span>
-                ${artSvg(product.category)}
+                ${productArt(product, "product-illus")}
             </div>
             <div class="product-body">
                 <div>
@@ -432,6 +415,142 @@ if (logoCard && window.matchMedia("(hover: hover) and (pointer: fine)").matches 
         logoCard.style.setProperty("--tilt-y", "0deg");
         logoCard.style.setProperty("--tilt-x", "0deg");
     });
+}
+
+/* ---------- Vitrina: carrusel de productos ---------- */
+
+const showcase = document.getElementById("showcasePanel");
+if (showcase) {
+    const stage = document.getElementById("showcaseStage");
+    const thumbs = document.getElementById("showcaseThumbs");
+    const info = document.getElementById("showcaseInfo");
+    const addBtn = document.getElementById("slideAdd");
+    const pauseBtn = document.getElementById("slidePause");
+    const countEl = document.getElementById("slideCount");
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const AUTOPLAY_MS = 6000;
+    const n = products.length;
+    let current = 0;
+    let timer = null;
+    let userPaused = reduceMotion.matches;
+    let hovering = false;
+    let visible = true;
+
+    stage.innerHTML = products.map((p, i) => `
+        <button type="button" class="slide" data-index="${i}" tabindex="-1" aria-label="Ver ${escapeHTML(p.name)}">
+            ${productArt(p, "slide-art")}
+        </button>`).join("");
+    thumbs.innerHTML = products.map((p, i) => `
+        <button type="button" class="thumb" role="tab" data-index="${i}" aria-label="${escapeHTML(p.name)}" aria-selected="false">
+            ${productArt(p, "")}
+        </button>`).join("");
+
+    const slides = [...stage.querySelectorAll(".slide")];
+    const thumbBtns = [...thumbs.querySelectorAll(".thumb")];
+    const pad = (x) => String(x).padStart(2, "0");
+
+    function slotOf(i) {
+        const d = (i - current + n) % n;
+        if (d === 0) return "0";
+        if (d === 1) return "1";
+        if (d === 2) return "2";
+        if (d === n - 1) return "-1";
+        return "hidden";
+    }
+
+    function show(index, { animateInfo = true } = {}) {
+        current = (index + n) % n;
+        const p = products[current];
+        slides.forEach((el, i) => {
+            const slot = slotOf(i);
+            el.dataset.slot = slot;
+            el.tabIndex = slot === "1" || slot === "2" ? 0 : -1;
+            el.setAttribute("aria-hidden", slot === "1" || slot === "2" ? "false" : "true");
+        });
+        thumbBtns.forEach((t, i) => t.setAttribute("aria-selected", String(i === current)));
+        showcase.style.setProperty("--slide-bg", p.color);
+        if (themeMeta) themeMeta.setAttribute("content", p.color);
+
+        document.getElementById("slideCat").textContent = CATEGORY_LABEL[p.category] || "";
+        document.getElementById("slideName").textContent = p.name;
+        document.getElementById("slideDesc").textContent = p.desc;
+        document.getElementById("slidePrice").textContent = money(p.price);
+        countEl.textContent = `${pad(current + 1)} / ${pad(n)}`;
+        addBtn.dataset.id = p.id;
+        addBtn.classList.remove("added");
+        addBtn.textContent = "+ Agregar al pedido";
+
+        if (animateInfo) { info.classList.remove("swap"); void info.offsetWidth; info.classList.add("swap"); }
+        schedule();
+    }
+
+    function schedule() {
+        clearTimeout(timer);
+        if (userPaused || hovering || !visible || document.hidden) return;
+        timer = setTimeout(() => show(current + 1), AUTOPLAY_MS);
+    }
+
+    function setPaused(paused) {
+        userPaused = paused;
+        pauseBtn.setAttribute("aria-pressed", String(paused));
+        pauseBtn.setAttribute("aria-label", paused ? "Reanudar carrusel" : "Pausar carrusel");
+        schedule();
+    }
+
+    document.getElementById("slidePrev").addEventListener("click", () => show(current - 1));
+    document.getElementById("slideNext").addEventListener("click", () => show(current + 1));
+    pauseBtn.addEventListener("click", () => setPaused(!userPaused));
+    stage.addEventListener("click", (e) => {
+        const s = e.target.closest(".slide");
+        if (s && s.dataset.slot !== "0") show(Number(s.dataset.index));
+    });
+    thumbs.addEventListener("click", (e) => {
+        const t = e.target.closest(".thumb");
+        if (t) show(Number(t.dataset.index));
+    });
+    addBtn.addEventListener("click", () => {
+        const id = Number(addBtn.dataset.id);
+        const slideEl = slides[current];
+        addToCart(id, slideEl);
+        addBtn.classList.add("added");
+        addBtn.textContent = "✓ Agregado";
+        clearTimeout(addBtn._t);
+        addBtn._t = setTimeout(() => { addBtn.classList.remove("added"); addBtn.textContent = "+ Agregar al pedido"; }, 1600);
+    });
+
+    // teclado: flechas dentro de la vitrina
+    showcase.addEventListener("keydown", (e) => {
+        if (e.target.matches("input, textarea")) return;
+        if (e.key === "ArrowRight") { e.preventDefault(); show(current + 1); }
+        if (e.key === "ArrowLeft") { e.preventDefault(); show(current - 1); }
+    });
+
+    // deslizar con el dedo
+    let startX = null;
+    stage.addEventListener("pointerdown", (e) => { startX = e.clientX; });
+    stage.addEventListener("pointerup", (e) => {
+        if (startX === null) return;
+        const dx = e.clientX - startX;
+        startX = null;
+        if (Math.abs(dx) > 45) show(current + (dx < 0 ? 1 : -1));
+    });
+
+    // pausa al pasar el mouse, al enfocar, fuera de pantalla o en otra pestaña
+    showcase.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") { hovering = true; schedule(); } });
+    showcase.addEventListener("pointerleave", () => { hovering = false; schedule(); });
+    showcase.addEventListener("focusin", () => { hovering = true; schedule(); });
+    showcase.addEventListener("focusout", () => { hovering = false; schedule(); });
+    document.addEventListener("visibilitychange", schedule);
+    if ("IntersectionObserver" in window) {
+        new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting;
+            showcase.classList.toggle("paused", !visible);
+            schedule();
+        }, { threshold: 0.3 }).observe(showcase);
+    }
+
+    if (userPaused) setPaused(true);
+    show(0, { animateInfo: false });
 }
 
 /* ---------- Manifiesto: palabra por palabra al hacer scroll ---------- */
