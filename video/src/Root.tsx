@@ -1,6 +1,8 @@
 import "./index.css";
 import { Composition, Folder } from "remotion";
 import { CampaignOverlay, CampaignPromo } from "./Campaign";
+import { Altoque } from "./Altoque";
+import { ALT } from "./altData";
 import { CafeContexto } from "./CafeContexto";
 import { CX } from "./cxData";
 import { EduRural } from "./EduRural";
@@ -110,6 +112,14 @@ export const RemotionRoot: React.FC = () => {
         component={EduRural}
         durationInFrames={EDU.duration}
         fps={EDU.fps}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="Altoque"
+        component={Altoque}
+        durationInFrames={ALT.duration}
+        fps={30}
         width={1080}
         height={1920}
       />
